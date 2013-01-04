@@ -1,0 +1,19 @@
+{
+    "name": "konstantinrachev/smooth",
+    "type": "phpframework",
+    "description": "Tiny, powerful yet Smooth php framework!",
+    "keywords": ["php","framework", "smooth"],
+    "homepage": "https://github.com/KRachev/Smooth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Konstantin Rachev",
+            "email": "k.rachev@smoothphp.com",
+            "homepage": "http://konstantinrachev.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}

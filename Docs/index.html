@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Smooth PHP Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="google-code-prettify/tomorrow-night.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width:700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+   aside {
+      position: fixed;
+      top: 0; 
+      left: 0; 
+      bottom: 0;
+      width: 200px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 15px 0 30px 30px;
+    }
+    </style>
+    </head>
+    <body onload="prettyPrint()">
+         <section class="container-narrow">
+          <a href="https://github.com/KRachev/Smooth" target="blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>  
+                  <div class="masthead">
+                    <ul class="nav nav-pills pull-right">
+                      <li><a href="http://smoothphp.com" target="blank">Our site</a></li>
+                      <li class="active"><a href="#">Docs</a></li>
+                    </ul>
+                    <h3 class="muted">Smooth Php Framework</h3>
+                  </div>
+            
+                  <hr>
+            
+                  <div class="jumbotron">
+                    <h1><strong style="color: #97ca47;">Smooth</strong> php framework documentation!</h1>
+                    <p class="lead">Our team wishes you great developing hours using Smooth.</p>
+                    <br><br><br>
+<!--                     <a class="btn btn-large btn-success" href="#">Download Smooth 0.0.1 + Docs</a> -->
+                  </div>
+                                     
+                  <!-- <footer class="footer"> -->
+                    <!-- <p>&copy; Smoothphp framework by <a href="#">Konstantin Rachev</a></p> -->
+                  <!-- </footer> -->
+                  
+            </section>            
+            <aside class="interface">
+                <a href="#Get-started">Get Started</a><br>
+                <a href="#Overview">Overview</a><br>
+                <a href="#Change-log">Change Log</a><br>
+                <a href="#Requirements">Requirements</a><br>
+                <a href="#Installation">Installation</a><br>
+                <a href="#Configuration">Configuration</a><br>
+                <a href="#Variables">Variables</a><br>
+                <ul style="list-style: none;">
+                  <li>- <a href="#Variables-Basepath">BASEPATH</a></li>
+                  <li>- <a href="#Variables-Apppath">APPATH</a></li>
+                  <li>- <a href="#Variables-Syspath">SYSPATH</a></li>
+                  <li>- <a href="#Variables-Webpath">WEBPATH</a></li>
+                  <li>- <a href="#Variables-Controller">CONTROLLER</a></li>
+                  <li>- <a href="#Variables-Smooth-v">SMOOTH_V</a></li>
+                </ul>
+                
+                <a href="#Mvc">MVC</a>
+                <ul style="list-style: none;">
+                  <li>– <a href="#Mvc-Model">Model</a></li>
+                  <li>– <a href="#Mvc-View">View</a></li>
+                  <li>– <a href="#Mvc-Controller">Controller</a></li>
+                </ul>
+                        
+                <a href="#Libraries">Libraries</a>
+                <ul style="list-style: none;">
+                  <!-- <li>– <a href="#Libraries-Cache">Cache</a></li> -->
+                  <!-- <li>– <a href="#Libraries-Config">Config</a></li> -->
+                  <li>– <a href="#Libraries-Cookie">Cookie</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Cookie-set">set</a></li>
+                          <li><a href="#Libraries-Cookie-get">get</a></li>
+                          <li><a href="#Libraries-Cookie-delete">delete</a></li>
+                      </ul>
+                  <li>– <a href="#Libraries-Crypt">Crypt</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Crypt-sha1">sha1</a></li>
+                          <li><a href="#Libraries-Crypt-sha224">sha224</a></li>
+                          <li><a href="#Libraries-Crypt-sha256">sha256</a></li>
+                          <li><a href="#Libraries-Crypt-sha384">sha384</a></li>
+                          <li><a href="#Libraries-Crypt-sha512">sha512</a></li>
+                          <li><a href="#Libraries-Crypt-md2">md2</a></li>
+                          <li><a href="#Libraries-Crypt-md4">md4</a></li>
+                          <li><a href="#Libraries-Crypt-md5">md5</a></li>
+                          <li><a href="#Libraries-Crypt-ripemd128">ripemd128</a></li>
+                          <li><a href="#Libraries-Crypt-ripemd160">ripemd160</a></li>
+                          <li><a href="#Libraries-Crypt-ripemd256">ripemd256</a></li>
+                          <li><a href="#Libraries-Crypt-ripemd320">ripemd320</a></li>
+                          <li><a href="#Libraries-Crypt-whirlpool">whirlpool</a></li>
+                          <li><a href="#Libraries-Crypt-snefru">snefru</a></li>
+                          <li><a href="#Libraries-Crypt-snefru256">snefru256</a></li>
+                          <li><a href="#Libraries-Crypt-gost">gost</a></li>
+                          <li><a href="#Libraries-Crypt-crc32">crc32</a></li>
+                          <li><a href="#Libraries-Crypt-crc32b">crc32b</a></li>
+                          <li><a href="#Libraries-Crypt-adler32">adler32</a></li>
+                      </ul>
+                  <li>– <a href="#Libraries-Datetime">Datetime</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Datetime-date">date</a></li>
+                          <li><a href="#Libraries-Datetime-time">time</a></li>
+                          <li><a href="#Libraries-Datetime-time-unix">time_unix</a></li>
+                          <li><a href="#Libraries-Datetime-now">now</a></li>
+                      </ul>
+                  <li>– <a href="#Libraries-Db">Db</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Db-query">query</a></li>
+                          <li><a href="#Libraries-Db-fetch">fetch</a></li>
+                          <li><a href="#Libraries-Db-fetch-where">fetch_where</a></li>
+                          <li><a href="#Libraries-Db-fetch-or-where">fetch_or_where</a></li>
+                          <li><a href="#Libraries-Db-fetch-where-in">fetch_where_in</a></li>
+                          <li><a href="#Libraries-Db-fetch-where-not-in">fetch_where_not_in</a></li>
+                          <li><a href="#Libraries-Db-fetch-max">fetch_max</a></li>
+                          <li><a href="#Libraries-Db-fetch-min">fetch_min</a></li>
+                          <li><a href="#Libraries-Db-fetch-average">fetch_average</a></li>
+                          <li><a href="#Libraries-Db-fetch-sum">fetch_sum</a></li>
+                          <li><a href="#Libraries-Db-fetch-count">fetch_count</a></li>
+                          <li><a href="#Libraries-Db-insert">insert</a></li>
+                          <li><a href="#Libraries-Db-truncate">truncate</a></li>
+                          <li><a href="#Libraries-Db-delete">delete</a></li>
+                          <li><a href="#Libraries-Db-update">update</a></li>
+                      </ul>
+                  <!-- <li>– <a href="#Libraries-Export">Export</a></li> -->
+                  <li>– <a href="#Libraries-Form">Form</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Form-filter">filter</a></li>
+                          <li><a href="#Libraries-Form-length">length</a></li>
+                          <li><a href="#Libraries-Form-check">check</a></li>
+                          <li><a href="#Libraries-Form-post">post</a></li>
+                          <li><a href="#Libraries-Form-get">get</a></li>
+                          <li><a href="#Libraries-Form-open">open</a></li>
+                          <li><a href="#Libraries-Form-input">input</a></li>
+                              <ul>
+                                  <li><a href="#Libraries-Form-input-hidden">hidden</a></li>
+                                  <li><a href="#Libraries-Form-input-text">text</a></li>
+                                  <li><a href="#Libraries-Form-input-password">password</a></li>
+                                  <li><a href="#Libraries-Form-input-email">email</a></li>
+                                  <li><a href="#Libraries-Form-input-radio">radio</a></li>
+                                  <li><a href="#Libraries-Form-input-checkbox">checkbox</a></li>
+                                  <li><a href="#Libraries-Form-input-submit">submit</a></li>
+                                  <li><a href="#Libraries-Form-input-date">date</a></li>
+                                  <li><a href="#Libraries-Form-input-color">color</a></li>
+                                  <li><a href="#Libraries-Form-input-datetime">datetime</a></li>
+                                  <li><a href="#Libraries-Form-input-datetime-local">datetime-local</a></li>
+                                  <li><a href="#Libraries-Form-input-month">month</a></li>
+                                  <li><a href="#Libraries-Form-input-number">number</a></li>
+                                  <li><a href="#Libraries-Form-input-range">range</a></li>
+                                  <li><a href="#Libraries-Form-input-search">search</a></li>
+                                  <li><a href="#Libraries-Form-input-tel">tel</a></li>
+                                  <li><a href="#Libraries-Form-input-time">time</a></li>
+                                  <li><a href="#Libraries-Form-input-url">url</a></li>
+                                  <li><a href="#Libraries-Form-input-week">week</a></li>
+                              </ul>
+                            <li><a href="#Libraries-Form-label">label</a></li>
+                            <li><a href="#Libraries-Form-legend">legend</a></li>
+                            <li><a href="#Libraries-Form-fieldset-open">fieldset_open</a></li>
+                            <li><a href="#Libraries-Form-fieldset-close">fieldset_close</a></li>
+                            <li><a href="#Libraries-Form-textarea">textarea</a></li>
+                            <li><a href="#Libraries-Form-ul-open">ul_open</a></li>
+                            <li><a href="#Libraries-Form-li">li</a></li>
+                            <li><a href="#Libraries-Form-ul-close">ul_close</a></li>
+                            <li><a href="#Libraries-Form-ol-open">ol_open</a></li>
+                            <li><a href="#Libraries-Form-ol-close">ol_close</a></li>
+                            <li><a href="#Libraries-Form-close">close</a></li>
+                      </ul>
+                  <li>– <a href="#Libraries-Frontend">Frontend</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Frontend-header">header</a></li>
+                          <li><a href="#Libraries-Frontend-aside">aside</a></li>
+                          <li><a href="#Libraries-Frontend-footer">footer</a></li>
+                          <li><a href="#Libraries-Frontend-h">h</a></li>
+                          <li><a href="#Libraries-Frontend-section">section</a></li>
+                          <li><a href="#Libraries-Frontend-nl">nl</a></li>
+                          <li><a href="#Libraries-Frontend-div">div</a></li>
+                          <li><a href="#Libraries-Frontend-div-open">div_open</a></li>
+                          <li><a href="#Libraries-Frontend-div-close">div_close</a></li>
+                          <li><a href="#Libraries-Frontend-link">link</a></li>
+                          <li><a href="#Libraries-Frontend-video">video</a></li>
+                          <li><a href="#Libraries-Frontend-audio">audio</a></li>
+                          <li><a href="#Libraries-Frontend-progress">progress</a></li>
+                          <li><a href="#Libraries-Frontend-p">p</a></li>
+                          <li><a href="#Libraries-Frontend-span">span</a></li>
+                          <li><a href="#Libraries-Frontend-small">small</a></li>
+                          <li><a href="#Libraries-Frontend-code">code</a></li>
+                          <li><a href="#Libraries-Frontend-pre">pre</a></li>
+                          <li><a href="#Libraries-Frontend-blockquote">blockquote</a></li>
+                          <li><a href="#Libraries-Frontend-address">address</a></li>
+                          <li><a href="#Libraries-Frontend-abbr">abbr</a></li>
+                          <li><a href="#Libraries-Frontend-html-5">html5</a></li>
+                          <li><a href="#Libraries-Frontend-load-js">load_js</a></li>
+                          <li><a href="#Libraries-Frontend-load-css">load_css</a></li>
+                          <li><a href="#Libraries-Frontend-meta">meta</a></li>
+                      </ul>
+                  <li>– <a href="#Libraries-Generator">Generator</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Generator-string">string</a></li>
+                          <li><a href="#Libraries-Generator-int">int</a></li>
+                          <li><a href="#Libraries-Generator-string-int">string_int</a></li>
+                      </ul>
+                  <!-- <li>– <a href="#Libraries-Img">Img</a></li> -->
+                  <!-- <li>– <a href="#Libraries-Mail">Mail</a></li> -->
+                  <li>– <a href="#Libraries-Math">Math</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Math-">multiply</a></li>
+                          <li><a href="#Libraries-Math-divide">divide</a></li>
+                          <li><a href="#Libraries-Math-degree">degree</a></li>
+                          <li><a href="#Libraries-Math-S">S</a></li>
+                          <li><a href="#Libraries-Math-P">P</a></li>
+                          <li><a href="#Libraries-Math-factorial">factorial</a></li>
+                          <li><a href="#Libraries-Math-permutations">permutations</a></li>
+                          <li><a href="#Libraries-Math-combinations">combinations</a></li>
+                          <li><a href="#Libraries-Math-variations">variations</a></li>
+                          <li><a href="#Libraries-Math-probabilities">probabilities</a></li>
+                          <li><a href="#Libraries-Math-log">log</a></li>
+                          <li><a href="#Libraries-Math-log10">log10</a></li>
+                          <li><a href="#Libraries-Math-fibonacci">fibonacci</a></li>
+                      </ul>
+                  <!-- <li>– <a href="#Libraries-Security">Security</a></li> -->
+                  <li>– <a href="#Libraries-Session">Session</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Session-set">set</a></li>
+                          <li><a href="#Libraries-Session-init">init</a></li>
+                          <li><a href="#Libraries-Session-get">get</a></li>
+                          <li><a href="#Libraries-Session-destroy">destroy</a></li>
+                      </ul>
+                  <!-- <li>– <a href="#Libraries-Text">Text</a></li> -->
+                  <li>– <a href="#Libraries-Url">Url</a></li>
+                      <ul>
+                          <li><a href="#Libraries-Url-component">component</a></li>
+                          <li><a href="#Libraries-Url-current">current</a></li>
+                          <li><a href="#Libraries-Url-base">base</a></li>
+                          <li><a href="#Libraries-Url-redirect">redirect</a></li>
+                      </ul>
+                </ul>
+            
+                <a href="#Routing">Routing</a><br>
+                <a href="#Database">Database</a><br>
+                <a href="#Smooth-generator"><b>Smooth Generator</b></a><br>
+                <!-- <a href="#Errors-handler">Errors handler</a><br> -->
+                <!-- <a href="#Loader">Loader</a><br> -->
+                <a href="#Template-system">Template System</a><br>
+                <a href="#System">System</a><br>
+                <a href="#App">App</a><br>
+                
+          </aside>
+          <br>
+          <br>
+          <br>
+          <br>
+          <section id="docs" class="container-narrow">
+              
+              <div id="Get-started">
+                  <div class="page-header">
+                      <h3 class="muted">Get Started</h3>
+                  </div>
+                  <p>All you need to do before starting work with <b>Smooth PHP Framework</b> is to carefull read the documentation of our product and in case of any issues to contact our team.</p>
+                  <p class="text-success"><b>Smooth Team</b> wishes you all the best using our product.</p>
+              </div>
+              
+              <div id="Overview">
+                  <div class="page-header">
+                      <h3 class="muted">Overview</h3>
+                  </div>
+                  <p>Smooth is a new and sparkling PHP framework who is trying to ease and quicken your work process, because we now that writing faster is really important to all developers.</p>
+              </div>
+              
+              <div id="Change-log">
+                  <div class="page-header">
+                      <h3 class="muted">Change Log</h3>
+                  </div>
+                  <p>This is our first version so everything is sparkling new.</p>
+              </div>
+              
+              <div id="Requirements">
+                  <div class="page-header">
+                      <h3 class="muted">Requirements</h3>
+                  </div>
+                  <p>Smooth PHP is requiring only Apache and SQL server(if you want to use databases) plus PHP version greater or equal to 5.3.0.</p>
+              </div>
+              
+              <div id="Installation">
+                  <div class="page-header">
+                      <h3 class="muted">Installation</h3>
+                  </div>
+                  <p>Everything is that simple. You just have to put all the Smooth files to your server, usually index.php is in your root directory; In order to configure your database connection you have to run the file named Database.php in Smooth/database folder and fill your server connection.</p>
+              </div>
+              
+              <div id="Configuration">
+                  <div class="page-header">
+                      <h3 class="muted">Configuration</h3>
+                  </div>
+              </div>
+              
+              <div id="Variables">
+                  <div class="page-header">
+                      <h3 class="muted">Variables</h3>
+                  </div>
+                  
+                  <h4 id="Variables-Basepath">BASEPATH</h4>
+                      <p>Path yo your project</p>
+                  <h4 id="Variables-Apppath">APPPATH</h4>
+                      <p>Path to your app folder with the models, views, controllers</p>
+                  <h4 id="Variables-Syspath">SYSPATH</h4>
+                      <p>Path you your Smooth folder with all files need for proper working process</p>
+                  <h4 id="Variables-Webpath">WEBPATH</h4>
+                      <p>Path to your project optimized for web usage</p>
+                  <h4 id="Variables-Controller">CONTROLLER</h4>
+                      <p>The name of your base controller</p>
+                  <h4 id="Variables-Smooth-v">SMOOTH_V</h4>
+                      <p>The version of Smooth you are using</p>
+              </div>
+              
+              <div id="Mvc">
+                  <div class="page-header">
+                      <h3 class="muted">Model View Controller</h3>
+                  </div>
+                  
+                  <h4 id="Mvc-Model">Model</h4>
+                      <p>The models are PHP files, designed to work with database information. Here is a sample model:</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linenums"><li class="L0"><span class="dec">&lt;&#63;php</span></li><li class="L1"><span class="pln"></span> use Smooth\Libraries\Db;</li><li class="L2"><span class="pln"> </span><span>class SampleModel extends Model {</span></li><li class="L3"><span class="pln">  </span><span>public function fetch_users() {</span></li><li class="L4"><span class="pln">   </span><span>return Db::fetch('users');</span></li><li class="L5"><span class="pln">  </span><span>}</span></li><li class="L6"><span class="pln"> </span><span>}</span></li><li class="L7">&#63;&gt;</li></ol></pre>
+                  <h4 id="Mvc-View">View</h4>
+                      <p>The views are PHP files which are responsible for presenting the final information to the users. These pages can be different parts(header,section,nav,footer,sidebar) or entire web pages. The choice is completely yours. The views can contain any information you want to.</p>
+                  <h4 id="Mvc-Controller">Controller</h4>
+                      <p>The controllers are PHP files linked with defined url. So if you want to get to the home view of your site you should http://mysite.com/home which is equal to http://mysite.com/index.php/home. Here is one sample controller:</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linenums"><li class="L0"><span class="dec">&lt;&#63;php</span></li><li class="L1"><span class="pln"> </span><span>class SampleController extends Controller {</span></li><li class="L2"><span class="pln">  </span><span>public function index() {</span></li><li class="L3"><span class="pln">   </span><span>$data['content'] = 'WelcomeSmoothView';</span></li><li class="L4"><span class="pln">   </span><span>$this->render('includes/template', compact('data'));</span></li><li class="L5"><span class="pln">  </span><span>}</span></li><li class="L6"><span class="pln"> </span><span>}</span></li><li class="L7">&#63;&gt;</li></ol></pre>
+              </div>
+              
+              <div id="Libraries">
+                  <div class="page-header">
+                      <h3 class="muted">Libraries</h3>
+                  </div>
+                      <!-- <h4 id="Libraries-Cache">Cache</h4> -->
+                      <!-- <h4 id="Libraries-Config">Config</h4> -->
+                      <h4 id="Libraries-Cookie">Cookie</h4>
+                        <p>Cookie library will help you initializing new cookies plus retaining already set up cookies. Need an additional function to delete cookies? Don't bother, it's into the package. Load our Cookie library by adding this to the top of your code:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Cookie;</span></li></ol></pre>
+                          <h5 id="Libraries-Cookie-set" class="muted">set(name, value, time = 3600)</h5>
+                            <p>If your will is to create a new cookie use our set function by passing cookie name and value parameters. The third one is the validity period, it is optional and is set to 3600 by default.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Cookie::set('my_cookie', 'Smooth');</span></li></ol></pre>
+                          <h5 id="Libraries-Cookie-get"class="muted">get(name)</h5>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Cookie::get('my_cookie');</span></li></ol></pre>
+                          <h5 id="Libraries-Cookie-delete" class="muted">delete(name)</h5>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Cookie::delete('my_cookie');</span></li></ol></pre>
+                      <h4 id="Libraries-Crypt">Crypt</h4>
+                        <p>The Crypt library provides a faster way of crypting your information by using some of the most used methods. Above are listed all of the available methods in our latest version. Loading the Crypt library is done by adding this to the top of your code:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Crypt;</span></li></ol></pre>
+                        <p>Crypting using any of the listed methods is complete by using this one:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::method('my_super_secret_password');</span></li></ol></pre>
+                        <p>So if you are still wondering how to use our Crypt library here is an example using <b>whirlpool</b> algorithm:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::whirlpool('my_information');</span></li></ol></pre>
+                        <p>It is the same with the rest of the algorithms.</p>
+                          <h5 id="Libraries-Crypt-sha1" class="muted">sha1(string)</h5>
+                          <h5 id="Libraries-Crypt-sha224" class="muted">sha224(string)</h5>
+                          <h5 id="Libraries-Crypt-sha256" class="muted">sha256(string)</h5>
+                          <h5 id="Libraries-Crypt-sha384" class="muted">sha384(string)</h5>
+                          <h5 id="Libraries-Crypt-sha512" class="muted">sha512(string)</h5>
+                          <h5 id="Libraries-Crypt-md2" class="muted">md2(string)</h5>
+                          <h5 id="Libraries-Crypt-md4" class="muted">md4(string)</h5>
+                          <h5 id="Libraries-Crypt-md5" class="muted">md5(string)</h5>
+                          <h5 id="Libraries-Crypt-ripemd128" class="muted">ripemd128(string)</h5>
+                          <h5 id="Libraries-Crypt-ripemd160" class="muted">ripemd160(string)</h5>
+                          <h5 id="Libraries-Crypt-ripemd256" class="muted">ripemd256(string)</h5>
+                          <h5 id="Libraries-Crypt-ripemd320" class="muted">ripemd320(string)</h5>
+                          <h5 id="Libraries-Crypt-whirlpool" class="muted">whirlpool(string)</h5>
+                          <h5 id="Libraries-Crypt-snefru" class="muted">snefru(string)</h5>
+                          <h5 id="Libraries-Crypt-snefru256" class="muted">snefru256(string)</h5>
+                          <h5 id="Libraries-Crypt-gost" class="muted">gost(string)</h5>
+                          <h5 id="Libraries-Crypt-crc32" class="muted">crc32(string)</h5>
+                          <h5 id="Libraries-Crypt-crc32b" class="muted">crc32b(string)</h5>
+                          <h5 id="Libraries-Crypt-adler32" class="muted">adler32(string)</h5>
+                     <h4 id="Libraries-Datetime">Date & Time</h4>
+                      <p>Our Date & Time library contains helper functions when working with dates. Load the library by:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Datetime;</span></li></ol></pre>
+                         <h5 id="Libraries-Datetime-date" class="muted">date(format)</h5>
+                          <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$format = '%y - %m - %d';</span></li><li class="L1"><span>Datetime::date($format);</span></li></ol></pre>
+                         <h5 id="Libraries-Datetime-time" class="muted">time()</h5>
+                          <p>Our time() function will return the exact time in format H:i:s. May come in handy.</p>
+                         <h5 id="Libraries-Datetime-time-unix" class="muted">time_unix()</h5>
+                          <p>Returning the exact time in unix format.</p>
+                         <h5 id="Libraries-Datetime-now" class="muted">now()</h5>
+                          <p>Function similar to time(), but with additional exact seconds. Time in format H:i:s:u.</p>
+                     <h4 id="Libraries-Db">Db</h4>
+                      <p>Use of <b>Db</b> class to smoothen your work process with databases. Smooth is using <b>PDO</b>, however you will not be pushed to write SQL queries if you don't want to. Load it with:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Db;</span></li></ol></pre>
+                         <h5 id="Libraries-Db-query" class="muted">query(SQL query)</h5>
+                          <p>Want to write all your queries by your own. The decision is yours.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::query("SELECT user,name, email from users");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch" class="muted">fetch(table, limit=null)</h5>
+                          <p>Function selecting all the data from your aimed table. The second parameter is limit and is set to null by default, but if you want to limit the result just put a number after a comma.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch('users');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT * FROM users");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-where" class="muted">fetch_where(table, array params, limit = null)</h5>
+                          <p>Function which will help you in select data with where statement, again our limit parameter is optional.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetch_where('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' AND email = 'myemail@mysite.com'");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-or-where" class="muted">fetch_or_where(table, array params, limit = null</h5>
+                          <p>Function similar to fetch_where but added OR instead of AND. Our third parameter(limit) is set to null by default and is optional.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetch_or_where('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' OR email = 'myemail@mysite.com'");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-where-in" class="muted">fetch_where_in(table, field, array params, limit = null)</h5>
+                          <p>Function making you capable of specifying multiple values in WHERE clause. Sounds a bit perplexing? Look at your example code:</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetch_where_in('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user IN ('me', 'you', 'them')");</span></li></ol></pre>
+                          <p>In this case you need to pass your table name, field name and the multiple values in a array, again our limit is set to null by default and is optional, however it is the 4 parameter in this function.</p>
+                         <h5 id="Libraries-Db-fetch-where-not-in" class="muted">fetch_where_not_in(table, field, array params)</h5>
+                          <p>This function syntax is similar to <b>fetch_where_in</b> except it adds <b>NOT</b> and changes the direction of our query.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetch_where_not_in('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user NOT IN ('me', 'you', 'them')");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-max" class="muted">fetch_max(table, field, as = null)</h5>
+                          <p>Function that returns the largest value of the column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_max('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MAX('user') FROM users");</span></li></ol></pre>
+                          <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
+                         <h5 id="Libraries-Db-fetch-min" class="muted">fetch_min(table, field, as = null)</h5>
+                          <p>The function is similar to <b>fetch_max</b>, however it returns the smallest values of the column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_min('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MIN('user') FROM users");</span></li></ol></pre>
+                          <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
+                         <h5 id="Libraries-Db-fetch-average" class="muted">fetch_average(table, field, as = null)</h5>
+                          <p>The function syntax is similar to the <b>fetch_max</b> and <b>fetch_min</b>, however it returns the average value of a numeric column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_average('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT AVG('user') FROM users");</span></li></ol></pre>
+                          <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
+                         <h5 id="Libraries-Db-fetch-sum" class="muted">fetch_sum(table, field, as = null)</h5>
+                          <p>The function syntax is similar to the other functions, however it returns the total sum of a numeric column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_sum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
+                          <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
+                         <h5 id="Libraries-Db-fetch-count" class="muted">fetch_count(table, field, as = null)</h5>
+                          <p>The function syntax is similar to the other functions, however it returns the number of values of the column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_sum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
+                          <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
+                          <p class="text-error">Note: The functions does not count NULL values.</p>
+                         <h5 id="Libraries-Db-insert" class="muted">insert(table, array params)</h5>
+                          <p>The function is helpful when insert new rows into the table without needing a dozen lines of code.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'mymail@mysite.com', 'name'=>'Joe', 'surname'=>'Anderson');</span></li><li class="L1"><span>Db::insert('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("INSERT INTO users (user, email, name, surname) VALUES ('me', 'mymail@mysite.com', 'Joe', 'Anderson')");</span></li></ol></pre>
+                          <p class="text-error">Note: The column names must match those given in the array.</p>
+                         <h5 id="Libraries-Db-update" class="muted">update(table, array params, array matches)</h5>
+                          <p>The function is helpful when updating existing rows.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'mymail@mysite.com', 'name'=>'John', 'surname'=>'Smith');</span></li><li class="L1"><span>Db::update('users', $params, array('user'=>'Joe','surname'='Anderson'));</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("INSERT INTO users (user, email, name, surname) VALUES ('me', 'mymail@mysite.com', 'Joe', 'Anderson') WHERE user='Joe' AND 'surname='Anderson'");</span></li></ol></pre>
+                          <p class="text-error">Note: The column names must match those given in the array.</p>
+                         <h5 id="Libraries-Db-delete" class="muted">delete(table, array params)</h5>
+                          <p>Function responsible for deleting rows from your table. Just pass your table name and your where parameters.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'surname'=>'Anderson');</span></li><li class="L1"><span>Db::delete('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("DELETE FROM users WHERE user='me' AND surname='Anderson");</span></li></ol></pre>
+                          <p class="text-error">Note: The column names must match those given in the array.</p>
+                         <h5 id="Libraries-Db-truncate" class="muted">truncate(table)</h5>
+                          <p>With this function you are able to delete all of the rows in a table and return the counting to 0.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::truncate('users');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("TRUNCATE users");</span></li></ol></pre>
+                     <!-- <h4 id="Libraries-Export">Export</h4> -->
+                     <h4 id="Libraries-Form">Form</h4>
+                      <p>Our Form library is containing some functions helpful when generating and submiting forms withou writing not a single line of code. Loading the Form library is getting done with this line of code:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Form;</span></li></ol></pre>
+                         <h5 id="Libraries-Form-filter" class="muted">filter(field name, rules)</h5>
+                          <p>The <b>filter</b> function is used when filtering data values from input fields.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::filter('username', rules);</span></li></ol></pre>
+                          <p>The rules are separated with <b>.</b> between them. Currently those below are included in the package.</p>
+                             <h6>alpha</h6>
+                             <h6>email</h6>
+                             <h6>numeric</h6>
+                             <h6>ip</h6>
+                             <h6>alpha_numeric</h6>
+                             <h6>alpha_dash_under</h6>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::filter('username', alpha.email.ip);</span></li></ol></pre>
+                          <p class="text-error">Note: Form input field names must match those into the filter function.</p>
+                         <h5 id="Libraries-Form-length" class="muted">length(field, min_length, max_length)</h5>
+                          <p><b>Length</b> function is used for setting up minimum and maximum length of the input field.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::filter('username', 5, 30);</span></li></ol></pre>
+                          <p class="text-error">Note: Form input field names must match those into the filter function.</p>
+                         <h5 id="Libraries-Form-check" class="muted">check()</h5>
+                          <p><b>Check</b> function is used when validating the submition of the user form, by checking all custom rules set by the developer.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::filter('username', alpha_numeric);</span></li><li class="L1"><span>Form::filter('email', email);</span></li><li class="L2"><span>Form::length('username', 5, 30);</span><li class="L3"><span>Form::length('email', 10, 50);</span></li></li><li class="L4"><span>if( Form::check() == true ) {</span></li><li class="L5"><span class="pln"> </span><span>//rest of your code</span></li><li class="L6"><span>}</span></li></ol></pre>
+                          <p>If any errors apper the statement of the <b>check</b> function will return false.</p>
+                         <h5 id="Libraries-Form-post" class="muted">post(field)</h5>
+                          <p><b>Post</b> function is used when retaining the value of a field in a form with post method.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::post('username');</span></li></ol></pre>
+                          <p class="text-error">Note: Form input field names must match those into the filter function.</p>
+                         <h5 id="Libraries-Form-get" class="muted">get(field)</h5>
+                          <p><b>Get</b> function is used when retaining the value of a field in a form with get method.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::get('username');</span></li></ol></pre>
+                          <p class="text-error">Note: Form input field names must match those into the filter function.</p>
+                         <h5 id="Libraries-Form-open" class="muted">open(action, method, id, class)</h5>
+                          <p>The function is used when generating forms without writing a html code.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::open('url to the requested action file', 'post|get', 'form-wanted-id', 'form-wanted-class');</span></li></ol></pre>
+                         <h5 id="Libraries-Form-input" class="muted">input(type, name, value, placeholder, pattern = null, required = null, title = null)</h5>
+                          <p>Form <b>input</b> function is used when generating input data fields. Field types available in the current Smooth version are listed below.</p>
+                             <h6 id="Libraries-Form-input-hidden">hidden</h6>
+                             <h6 id="Libraries-Form-input-text">text</h6>
+                             <h6 id="Libraries-Form-input-password">password</h6>
+                             <h6 id="Libraries-Form-input-email">email</h6>
+                             <h6 id="Libraries-Form-input-radio">radio</h6>
+                             <h6 id="Libraries-Form-input-checkbox">checkbox</h6>
+                             <h6 id="Libraries-Form-input-submit">submit</h6>
+                             <h6 id="Libraries-Form-input-date">date</h6>
+                             <h6 id="Libraries-Form-input-color">color</h6>
+                             <h6 id="Libraries-Form-input-datetime">datetime</h6>
+                             <h6 id="Libraries-Form-input-datetime-local">datetime-local</h6>
+                             <h6 id="Libraries-Form-input-month">month</h6>
+                             <h6 id="Libraries-Form-input-number">number</h6>
+                             <h6 id="Libraries-Form-input-range">range</h6>
+                             <h6 id="Libraries-Form-input-search">search</h6>
+                             <h6 id="Libraries-Form-input-tel">tel</h6>
+                             <h6 id="Libraries-Form-input-time">time</h6>
+                             <h6 id="Libraries-Form-input-url">url</h6>
+                             <h6 id="Libraries-Form-input-week">week</h6>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::input('text', 'username', '', 'Enter your wanted username', pattern, required, title);</span></li></ol></pre>
+                            <p>The last three parameters are set to null by default so they are optional.</p>
+                        <h5 id="Libraries-Form-label" class="muted">label(for, content)</h5>
+                          <p>The label function is used when generating labels. Sample code is presented below:</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::label('user', 'Username');</span></li></ol></pre>
+                        <h5 id="Libraries-Form-legend" class="muted">legend(content)</h5>
+                          <p>Function used when generating legend content into forms.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::legend('Registration form');</span></li></ol></pre>
+                        <h5 id="Libraries-Form-fieldset-open" class="muted">fieldset_open()</h5>
+                          <p>Function used for generating opening fieldset tag.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::fieldset_open();</span></li></ol></pre>
+                        <h5 id="Libraries-Form-fieldset-close" class="muted">fieldset_close()</h5>
+                          <p>Function used for generation clossing fieldset tag.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::fieldset_close();</span></li></ol></pre>
+                        <h5 id="Libraries-Form-textarea" class="muted">textarea(name, id, class, content)</h5>
+                          <p><b>Textarea</b> function is used when generating textareas.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::textarea('bio', '', '', '');</span></li></ol></pre>
+                          <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Form-ul-open" class="muted">ul_open(name, id, class)</h5>
+                          <p>Function using when generating ul_open tags.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::ul_open('lists', '', '');</span></li></ol></pre>
+                           <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Form-li" class="muted">li(id, class, value, content)</h5>
+                          <p>Used for generation <b>li</b> fields.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::li('', '', 'pears', 'Pears');</span></li></ol></pre>
+                          <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Form-ul-close" class="muted">ul_close()</h5>
+                          <p>Function used for generating closing ul tags.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::ul_close();</span></li></ol></pre>
+                        <h5 id="Libraries-Form-ol-open" class="muted">ol_open()</h5>
+                          <p>Used for generating opening ol tags.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::ol_open();</span></li></ol></pre>
+                        <h5 id="Libraries-Form-ol-close" class="muted">ol_close()</h5>
+                          <p>Used for generating closing ol tags.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::ol_close();</span></li></ol></pre>
+                        <h5 id="Libraries-Form-close" class="muted">close()</h5>
+                          <p>Function used for generation closing form tag.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Form::close();</span></li></ol></pre>
+                    <h4 id="Libraries-Frontend">Frontend</h4>
+                      <p>The <b>Frontend</b> library is used to generate wanted html document parts.</p>
+                        <h5 id="Libraries-Frontend-header" class="muted">header(content)</h5>
+                          <p>Used for generating header part.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::header('all the content you want to put into the header');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-aside" class="muted">aside(content)</h5>
+                          <p>Used for generating aside part available from HTML5.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::aside('all the content you want to put into the aside part');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-footer" class="muted">footer(content)</h5>
+                          <p>Function used for generating footer document parts.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::footer('all the content you want to put into the footer part');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-h" class="muted">h(content, type)</h5>
+                          <p>Use the <b>h</b> function for generating heading tags. The type can variate from 0 to 6.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::h('content of your heading', '3');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-section" class="muted">section(content)</h5>
+                          <p>Used for generation section html document parts.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::section('your content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-nl" class="muted">nl(count)</h5>
+                          <p>Mainly used for adding new lines to your code.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::nl(10);</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-div" class="muted">div(id, class, content)</h5>
+                          <p>Used for generating whole div parts(opening and closing tags).</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::div('', '', 'wanted content');</span></li></ol></pre>
+                          <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Frontend-div-open" class="muted">div_open(id, class)</h5>
+                          <p>Used for generating only opening div parts.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::div_open('myDiv', '');</span></li></ol></pre>
+                          <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Frontend-div-close" class="muted">div_close()</h5>
+                          <p>Used for generating only closing div parts.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::div_close('', 'styledDiv');</span></li></ol></pre>
+                          <p class="text-error">Note: By leaving the id and class blank you do not assign any id or class names to the field.</p>
+                        <h5 id="Libraries-Frontend-link" class="muted">link(link, content)</h5>
+                          <p>Function mainly used for generation hrefs to external content.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::link('url', 'content to be shown');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-video" class="muted">video(link, width, height, controls = 'controls')</h5>
+                          <p>Used for generating video parts into the html document. Available from HTML5.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::video('url to the video', 200, 400, 'controls')</span></li></ol></pre>
+                          <p>The last parameter is set by default to controls so it is optional to complete.</p>
+                        <h5 id="Libraries-Frontend-audio" class="muted">audio(link, controls = 'controls')</h5>
+                          <p>Used for generating audio as a part from the page.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::audio('url to the audio file');</span></li></ol></pre>
+                          <p>The last parameter is set by default to controls so it is optional to complete.</p>
+                        <h5 id="Libraries-Frontend-progress" class="muted">progress(max, value)</h5>
+                          <p>Used for generation progress bars. Available from HTML5.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::progress(250, 100);</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-p" class="muted">p(id, class, content)</h5>
+                          <p>Function generally used for creating a paragraphs.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::p('myParagraph', '', 'content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-span" class="muted">span(name, id, class, content)</h5>
+                          <p>Function used for generating a span parts. The syntax is identical to the p function.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::span('', '', 'my content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-small" class="muted">small(name, id, class, content)</h5>
+                          <p>Used for declaring small parts in the current page.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::small('', '', 'my content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-code" class="muted">code(id, class, content)</h5>
+                          <p>Used for generating code blocks. The function syntax is similar to the three above.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::code('myCode', 'Code', 'my content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-pre" class="muted">pre(id, class, content)</h5>
+                          <p>Function used for generating pre parts where all white spaces as the text was enter should be visible to the user.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::pre('preId', '', 'my pre tag content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-blockquote" class="muted">blockquote(id, class, cite, content)</h5>
+                          <p>Used for quoting with cite attribute.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::blockquote('', '', 'Smooth PHP Team', 'The quote');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-address" class="muted">address(id, class, content)</h5>
+                          <p>Function used for generating parts with contact information.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::address('addressId', '', 'my content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-abbr" class="muted">abbr(id, class, title, content)</h5>
+                          <p>Used for including an abbreviation or acronym.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::abbr('abbrId', '', 'Acronym title', 'my acronym content');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-html-5" class="muted">html5(lang, title, charset = 'utf-8', main_content)</h5>
+                          <p>Function which will deliver to you completely working whole HTML5 standarted page code.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::html5('en', 'Smooth PHP Framework', 'utf-8', 'My main content goes here');</span></li></ol></pre>
+                        <h5 id="Libraries-Frontend-load-js" class="muted">load_js(library name)</h5>
+                          <p>Generally used for easier loading of some CDN js libraries.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::load_js('underscore');</span></li></ol></pre>
+                          <p>The full list of all available libraries:</p>
+                            <h6>jquery, jquery-ui, jquery-mobile, angular-js, ext-core, mootols, prototype, scriptaculous, swfobject, webfont, qunit, dojo, less, yui, coffeescript, underscore, backbone</h6>
+                        <h5 id="Libraries-Frontend-load-css" class="muted">load_css(library_name)</h5>
+                          <p>Generally used for easier loading of some CDN css libraries.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::load_css('normalize');</span></li></ol></pre>
+                          <p>The full list of all available libraries:</p>
+                            <h6>bootstrap, bootstrap-responsive, qunit, normalize, html5-boilerplate, reset, skeleton</h6>
+                        <h5 id="Libraries-Frontend-meta" class="muted">meta(type, content)</h5>
+                          <p>Used for generating meta tags.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Frontend::meta('description', 'Smooth PHP Framework is great');</span></li></ol></pre>
+                    <h4 id="Libraries-Generator">Generator</h4>
+                      <p>The <b>Generator</b> library is generally used for creating random strings or ints by set length. Loading the library is simply by adding this line of code to the top.</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Generator;</span></li></ol></pre>
+                        <h5 id="Libraries-Generator-string" class="muted">string(length)</h5>
+                          <p>Generating random string.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Generator::string(15);</span></li></ol></pre>
+                        <h5 id="Libraries-Generator-int" class="muted">int(length)</h5>
+                          <p>Generating random ints.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Generator::int(57);</span></li></ol></pre>
+                        <h5 id="Libraries-Generator-string-int" class="muted">string_int(length)</h5>
+                          <p>Generating random combinations between string and int.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Generator::string_int(27);</span></li></ol></pre>
+                    <!-- <h4 id="Libraries-Img">Img</h4> -->
+                    <!-- <h4 id="Libraries-Mail">Mail</h4> -->
+                    <h4 id="Libraries-Math">Math</h4>
+                      <p>The library is useful when calculating different types of problems. To load the <b>Math</b> library you have to add this single line to the top of your code:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Math;</span></li></ol></pre>
+                        <h5 id="Libraries-Math-multiply" class="muted">multiply(array values)</h5>
+                          <p>Helpful function used when multiplying numbers.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::multiply(array(5, 7, 9, 17));</span></li></ol></pre>
+                        <h5 id="Libraries-Math-divide" class="muted">divide(a, b)</h5>
+                          <p>Mainly used when dividing a range of numbers.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::divide(array(3, 8, 6));</span></li></ol></pre>
+                        <h5 id="Libraries-Math-degree" class="muted">degree(num, degree)</h5>
+                          <p>Function used when graduating a number.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::degree(5, 7);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-S" class="muted">S(array values)</h5>
+                          <p>Useful function when calculating the surface of a geometric shape.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::S(array(5, 8, 3, 4, 7));</span></li></ol></pre>
+                        <h5 id="Libraries-Math-P" class="muted">P(array values)</h5>
+                          <p>Useful function when calculating the perimeter of a geometric shape.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::P(array(5, 6, 8, 3));</span></li></ol></pre>
+                        <h5 id="Libraries-Math-factorial" class="muted">factorial(num)</h5>
+                          <p>Used when calculating a factorial of a number.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::factorial(7);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-permutations" class="muted">permutations(num)</h5>
+                          <p>Mainly used when calculating the number of permutations.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::permutations(3, 7);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-combinations" class="muted">combinations(num, repetitions)</h5>
+                          <p>Useful when calculating the number of combinations.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::combinations(8, 17);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-variations" class="muted">variations(num, all)</h5>
+                          <p>Function used when calculating the number of variations.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::variations(4, 9);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-probabilities" class="muted">probabilities(num, all)</h5>
+                          <p>May come in gandy when calculating the number of probabilities.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::probabilities(5, 8);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-log" class="muted">log(base, log)</h5>
+                          <p>Handy when calculating a log.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::log(3, 7);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-log10" class="muted">log10(log)</h5>
+                          <p>Handy when calculating a log with base 10.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::log(87);</span></li></ol></pre>
+                        <h5 id="Libraries-Math-fibonacci" class="muted">fibonacci(num)</h5>
+                          <p>Pretty useful when calculating a fibonacci series.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Math::fibonacci(74);</span></li></ol></pre>
+                    <!-- <h4 id="Libraries-Security">Security</h4> -->
+                    <h4 id="Libraries-Session">Session</h4>
+                      <p>A Smooth library responsible for making your work with sessions much easier. Load it with this single line of code added to the top of the page:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Session;</span></li></ol></pre>
+                        <h5 id="Libraries-Session-set" class="muted">set()</h5>
+                          <p>Used when starting the <b>Smooth Session</b></p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Session::set();</span></li></ol></pre>
+                        <h5 id="Libraries-Session-init" class="muted">init(name, value)</h5>
+                          <p>Generally used when initializing a new session.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Session::init('logged_in', 'true');</span></li></ol></pre>
+                        <h5 id="Libraries-Session-get" class="muted">get(name)</h5>
+                          <p>Function responsible for delivering the requested session data.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Session::get('logged_in');</span></li></ol></pre>
+                        <h5 id="Libraries-Session-destroy" class="muted">destroy()</h5>
+                          <p>A function responsible for destroying the current Smooth session.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Session::destroy('logged_in');</span></li></ol></pre>
+                    <!-- <h4 id="Libraries-Text">Text</h4> -->
+                    <h4 id="Libraries-Url">Url</h4>
+                      <p>A library making your work with urls much funier and clear. Load it by adding this to the top of the page:</p>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Url;</span></li></ol></pre>
+                        <h5 id="Libraries-Url-component" class="muted">component(num)</h5>
+                          <p>A function responsible for returning the requested component.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Url::component(3);</span></li></ol></pre>
+                        <h5 id="Libraries-Url-current" class="muted">current()</h5>
+                          <p>Returning the current webpage url.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Url::current();</span></li></ol></pre>
+                        <h5 id="Libraries-Url-base" class="muted">base()</h5>
+                          <p>Returning the base url of the App. </p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Url::base() //equal to the WEBPATH variable</span></li></ol></pre>
+                        <h5 id="Libraries-Url-redirect" class="muted">redirect(url)</h5>
+                          <p>A additional functino for redirecting the user to another location.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Url::redirect('http://smoothphp.com');</span></li></ol></pre>
+              </div>
+
+              <div id="Rounting">
+                  <div class="page-header">
+                      <h3 class="muted">Routing</h3>
+                  </div>
+                <p>Smooth Routing system is pretty simple. For example if you want to load the home controller, add function and pass an id in order to run your func() propertly you need to run the above in your browser.</p>
+                  <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>http://smoothphp.com/home/add/5</span></li><li class="L1">//equal to whatever url you are using + localhost</li><li class="L2"><span>http://localhost/home/add/5</span></li></ol></pre>
+                <p>If you want to change the name of your default system or app folder you need to open the index.php file of Smooth PHP Framework which is located into the project folder and look at lines 35, 36, 37, the variables are called system_path, app_path, web_path.</p>
+                <p class="text-error">Be careful and check if the given names are equal.</p>
+                <p>In case you want to change your default controller open the same index.php file and look at line 38, the var is called <b>base_controller</b></p>
+                  <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$system_path = 'Smooth';</span></li><li class="L1">$app_path = 'Application';</li><li class="L2"><span>$web_path = 'Smooth';</span></li><li class="L3"><span>$base_controller = 'welcome';</span></li></ol></pre>
+              </div>
+              
+              <div id="Database">
+                  <div class="page-header">
+                      <h3 class="muted">Database</h3>
+                  </div>
+                    <p>The <b>Database</b> module of Smooth is of great importance. In most cases you will need to set up your database server connection. In order to complete this step find the file called Database.php, located into the Smooth system folder, database folder. Here is the full path:</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Smooth/database/Database.php</span></li></ol></pre>
+              </div>
+              
+              <div id="Smooth-generator">
+                  <div class="page-header">
+                      <h3 class="muted">Smooth Generator</h3>
+                  </div>
+                  <p>Our <b>Smooth Generator</b> module will be included into the next stable version of Smooth PHP Framework. All in all it would be helpful to all developers when writing their code.</p>
+              </div>
+              
+              <!-- <div id="Errors-handler">
+                  <div class="page-header">
+                      <h3 class="muted">Errors Handler</h3>
+                  </div>
+              </div>
+              
+              <div id="Loader">
+                  <div class="page-header">
+                      <h3 class="muted">Loader</h3>
+                  </div>
+              </div> -->
+              
+              <div id="Template-system">
+                  <div class="page-header">
+                      <h3 class="muted">Template System</h3>
+                  </div>
+                    <p>Our custom template system integrated into the Smooth version is pretty simple and quite flexible. The main files can be found onto this path <b>Application/views/includes/</b>. There are three files <b>header.php</b>, <b>footer.php</b> and <b>template.php</b>. How to use the template system? Here is an example:</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linenums"><li class="L0"><span class="dec">&lt;&#63;php</span></li><li class="L1"><span class="pln"> </span><span>class SampleController extends Controller {</span></li><li class="L2"><span class="pln">  </span><span>public function index() {</span></li><li class="L3"><span class="pln">   </span><span>$data['content'] = 'WelcomeSmoothView';</span></li><li class="L4"><span class="pln">   </span><span>$this->render('includes/template', compact('data'));</span></li><li class="L5"><span class="pln">  </span><span>}</span></li><li class="L6"><span class="pln"> </span><span>}</span></li><li class="L7">&#63;&gt;</li></ol></pre>
+                    <p>In this way you will load the view called WelcomeSmoothView and pass all the vars associated with the $data. In case you want to pass more vars containing some information you need to use this way:</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linenums"><li class="L0"><span>$data['my_var'] = 'my-information';</span></li><li class="L1"></span><span>$data['content'] = 'WelcomeSmoothView';</span></li><li class="L4"><span>$this->render('includes/template', compact('data'));</span></li></ol></pre>
+                    <p>In your view file you can retain the data form the variable by just write its name with a $ sign in front.</p>
+                      <pre class="prettyprint" id="PHP"><ol class="linenums"><li class="L0"><span>echo $my_var; //Will output my-information</span></li></ol></pre>
+              </div>
+              
+              <div id="System">
+                  <div class="page-header">
+                      <h3 class="muted">System</h3>
+                  </div>
+                  <p>By default our system folder is called <b>Smooth</b> and it contains all the information needed to use all the functions of Smooth PHP Framework. As it was explained above you can rename the folder as you wish.</p>
+                  <p class="text-error">Note: Don't remove any of the files included into the package unless you are sure it won't prevent the system.</p>
+              </div>
+              
+              <div id="App">
+                  <div class="page-header">
+                      <h3 class="muted">App</h3>
+                  </div>
+                  <p>Our app folder is called <b>Application</b> and it contains all the user files. Mostly is used to handle the MVC files(Models, Views, Controllers).</p>
+              </div>
+              
+          </section>
+          
+          <script src="google-code-prettify/prettify.js"></script>
+        </body>    
+    </html>
