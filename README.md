@@ -12,7 +12,7 @@ No one wants to get into complicated codes with thousand lines of code without a
 
 Smooth can be used by both advanced and beginner programmers within minutes after it is installed. You need only to download the latest version of the framework extract it and you are ready to go. In case of any issues check our community pages or write our professional support. 
 
-Get everything you need at [our  official site](http://smoothphp.com "Smooth php framework") or check the [documetation](http://docs.smoothphp.com "Smooth Docs") and the [get started guide](http://smoothphp.com/getstarted "Smooth - Get Started guide").
+Get everything you need at [our  official site](http://smoothphp.com "Smooth php framework") or check the [documentation](http://docs.smoothphp.com "Smooth Docs") and the [get started guide](http://smoothphp.com/getstarted "Smooth - Get Started guide").
 
 #### Smooth directories
 
