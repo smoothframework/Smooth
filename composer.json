@@ -1,9 +1,9 @@
 {
-    "name": "konstantinrachev/smooth",
+    "name": "smoothframework/smooth",
     "type": "phpframework",
     "description": "Tiny, powerful yet Smooth php framework!",
     "keywords": ["php","framework", "smooth"],
-    "homepage": "https://github.com/KRachev/Smooth",
+    "homepage": "https://github.com/smoothframework/Smooth",
     "license": "MIT",
     "authors": [
         {
