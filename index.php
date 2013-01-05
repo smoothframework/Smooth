@@ -105,16 +105,20 @@
 	 * ---------------------------------------- 
 	 */
 	
-	if (!isset($_SERVER['REQUEST_URI']))
+	if ( ! isset($_SERVER['REQUEST_URI']))
 	{
-       $_SERVER['REQUEST_URI'] = substr($_SERVER['PHP_SELF'],1 );
-       if (isset($_SERVER['QUERY_STRING'])) { $_SERVER['REQUEST_URI'].='?'.$_SERVER['QUERY_STRING']; }
+		$_SERVER['REQUEST_URI'] = substr($_SERVER['PHP_SELF'],1 );
+		if (isset($_SERVER['QUERY_STRING'])) 
+		{ 
+			$_SERVER['REQUEST_URI'].='?'.$_SERVER['QUERY_STRING']; 
+		}
 	}
 
 	/**
 	 * Defining the Smooth variables
 	 * -----------------------------
 	 */
+	
 	define('BASEPATH', dirname(realpath(__FILE__)) . '/');
 	define('APPPATH', BASEPATH . $app_path . '/');
 	define('SYSPATH', BASEPATH . $system_path . '/');
@@ -126,6 +130,7 @@
 	 * Loading our main kernel file
 	 * ----------------------------
 	 */
+	
 	require_once SYSPATH . '/core/Core.php';
 	use Smooth\Core\Smooth;
 
@@ -133,5 +138,6 @@
 	 * Initializing the configuration and running the Smooth framework
 	 * ----------------------------
 	 */
+	
 	$smooth = new Smooth();
 	$smooth->run();
