@@ -12,14 +12,14 @@
 	use Smooth\Libraries\Session;
 
 	/* Including the core files for running the Smooth framework */
-	include SYSPATH . 'Action/Controller.php';
-	include SYSPATH . 'Action/Model.php';
-	include SYSPATH . 'Core/Library.php';
-	include SYSPATH . 'Core/Router.php';
-	include SYSPATH . 'Core/Smooth.php';
-	include SYSPATH . 'Database/Database.php';
-	include SYSPATH . 'Loader/Loader.php';
-	include SYSPATH . 'Libraries/Session.php';
+	include SYSPATH . 'action/Controller.php';
+	include SYSPATH . 'action/Model.php';
+	include SYSPATH . 'core/Library.php';
+	include SYSPATH . 'core/Router.php';
+	include SYSPATH . 'core/Smooth.php';
+	include SYSPATH . 'database/Database.php';
+	include SYSPATH . 'loader/Loader.php';
+	include SYSPATH . 'libraries/Session.php';
 
 	/* Initializing the Autoload function for all the libraries */
 	$loader = new Loader();
