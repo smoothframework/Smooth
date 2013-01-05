@@ -8,7 +8,7 @@
 		public function load()
 		{
 			// Set all the libraries you want to enable their autoload
-			$data = array('form', 'generator', 'db', 'url', 'frontend', 'crypt', 'math', 'session', 'datetime');
+			$data = array('form', 'generator', 'db', 'url', 'frontend', 'crypt', 'math', 'datetime');
 
 			foreach($data as $library)
 			{
