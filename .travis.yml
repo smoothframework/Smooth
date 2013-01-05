@@ -4,7 +4,9 @@ php:
   - 5.3
 
 env:
-  - DB=mysql
+  - DB=pdo/mysql
 
 before_script:
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS smooth_test;" -uroot; fi
+    - sh -c "if [ '$DB' = 'pdo/mysql' ]; then mysql -e 'create database IF NOT EXISTS smooth_test;'; fi
+    
+script: phpunit Tests/InitTest.php
