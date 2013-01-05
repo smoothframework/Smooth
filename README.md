@@ -1,5 +1,7 @@
 # Smooth PHP framework
 
+[![Build Status](https://travis-ci.org/smoothframework/Smooth.png?branch=master)](https://travis-ci.org/smoothframework/Smooth)
+
 Requirements: PHP version 5.3+, Apache and SQL server(needed for perfect usage of all Smooth features)
 
 ### What is Smooth?

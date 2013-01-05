@@ -18,7 +18,7 @@
 		public static function autoload()
 		{
 			// Set all the libraries you want to enable their autoload
-			$data = array('config', 'form', 'generator', 'db', 'url', 'text', 'frontend', 'crypt', 'security', 'cache', 'img', 'math');
+			$data = array('form', 'generator', 'db', 'url', 'frontend', 'crypt', 'math', 'session', 'datetime');
 
 			foreach($data as $library)
 			{
