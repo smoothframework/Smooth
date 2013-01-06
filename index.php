@@ -121,7 +121,7 @@
 	define('APPPATH', BASEPATH . $app_path . '/');
 	define('SYSPATH', BASEPATH . $system_path . '/');
 	define('WEBPATH', (isset($_SERVER['HTTPS'])?'https://':'http://') . getenv('HTTP_HOST') . '/' . $web_path. '/');
-	define('CONTROLLER', $base_controller);
+	define('BASECONTROLLER', $base_controller);
 	define('SMOOTH_V', '0.0.1');
 
 	/**
