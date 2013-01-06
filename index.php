@@ -117,7 +117,6 @@
 	use Smooth\Errors\Handler;
 
 	define('BASEPATH', dirname(realpath(__FILE__)) . '/');
-<<<<<<< HEAD
 
 	/**
 	 * Determing that the $app_path is a real directory
@@ -192,13 +191,6 @@
 	 * Defening the current Smooth framework version
 	 */
 	define('SMOOTH_V', '1.0.2');
-=======
-	define('APPPATH', BASEPATH . $app_path . '/');
-	define('SYSPATH', BASEPATH . $system_path . '/');
-	define('WEBPATH', (isset($_SERVER['HTTPS'])?'https://':'http://') . getenv('HTTP_HOST') . '/' . $web_path. '/');
-	define('BASECONTROLLER', $base_controller);
-	define('SMOOTH_V', '0.0.1');
->>>>>>> 9efaa29be5db34e0fdc5595febc7a1f802dccc81
 
 	/**
 	 * Loading our main kernel file
