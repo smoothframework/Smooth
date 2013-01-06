@@ -2,7 +2,7 @@
 
 	/**
 	* 
-	* Smooth framework version 0.0.1
+	* Smooth framework version 1.0.2
 	*
 	* Php framework based on PHP 5.3+
 	*
@@ -28,15 +28,17 @@
 	* 
 	*/
 	define('ENVIRONMENT', 'development');
-
+	
 	if( defined('ENVIRONMENT') )
 	{
 		switch (ENVIRONMENT) {
 			case 'development':
+				ini_set('log_errors', 1);
 				ini_set('display_errors', 1);
 				error_reporting(E_ALL | E_STRICT);
 				break;
 			case 'usage':
+				ini_set('log_errors', 0);
 				ini_set('display_errors', 0);
 				error_reporting(0);
 				break;
@@ -60,15 +62,6 @@
 	}
 
 	/**
-	 * App path configuration
-	 * ----------------------
-	 *
-	 * You should set your application paths carefully. 
-	 * They are set by default, however you can change the directory names as you wish.
-	 * 
-	 */
-	
-	/**
 	 * System path configuration
 	 * -------------------------
 	 * This one sets the proper directory of the Smooth's system files.
@@ -80,6 +73,7 @@
 	 * Application path configuration
 	 * -------------------------
 	 * This one sets the proper directory of the Smooth's application files.
+	 * @var string $system_path
 	 */
 	
 	$app_path = 'Application';
@@ -88,6 +82,7 @@
 	 * Web path configuration
 	 * -------------------------
 	 * This one sets the proper directory of the Smooth's system files.
+	 * @var string $web_path 
 	 */
 	
 	$web_path = 'Smooth';
@@ -96,6 +91,7 @@
 	 * Base controller configuration
 	 * -------------------------
 	 * Sets the exact name of the wanted controller, which to be firstly loaded
+	 * @var string $base_controller
 	 */	
 	
 	$base_controller = 'welcome';
@@ -117,12 +113,84 @@
 	 * Defining the Smooth variables
 	 * -----------------------------
 	 */
+	
+	use Smooth\Errors\Handler;
+
 	define('BASEPATH', dirname(realpath(__FILE__)) . '/');
-	define('APPPATH', BASEPATH . $app_path . '/');
-	define('SYSPATH', BASEPATH . $system_path . '/');
-	define('WEBPATH', (isset($_SERVER['HTTPS'])?'https://':'http://') . getenv('HTTP_HOST') . '/' . $web_path. '/');
-	define('CONTROLLER', $base_controller);
-	define('SMOOTH_V', '0.0.1');
+
+	/**
+	 * Determing that the $app_path is a real directory
+	 * @var string $app_path
+	 */
+	if( is_dir( $app_path ) )
+	{
+		if( realpath( $app_path ) !== false )
+		{
+			define('APPPATH', realpath(BASEPATH . $app_path) . '/');
+		}
+	}
+	else
+	{
+		if( ! is_dir( $app_path ) )
+		{
+			Handler::handler(E_USER_ERROR, 'The ' . $app_path . ' is not a valid directory', 'index.php', 138);
+		}
+	}
+
+	/**
+	 * Determing that the $system_path is a real directory
+	 * @var string $system_path
+	 */
+	if( is_dir( $system_path ) )
+	{
+		if( realpath( $system_path ) !== false )
+		{
+			define('SYSPATH', realpath(BASEPATH . $system_path) . '/');
+		}
+	}
+	else
+	{
+		if( ! is_dir( $system_path ) )
+		{
+			Handler::handler(E_USER_ERROR, 'The ' . $system_path . ' is not a valid directory', 'index.php', 146);
+		}
+	}
+
+	/**
+	 * Determing that the $web_path is a real directory
+	 * @var string $web_path
+	 */
+	if( is_dir( $web_path ) )
+	{
+		if( realpath( $web_path ) !== false )
+		{
+			define('WEBPATH', (isset($_SERVER['HTTPS'])?'https://':'http://') . getenv('HTTP_HOST') . '/' . $web_path. '/');
+		}
+	}
+	else
+	{
+		if( ! is_dir( $web_path ) )
+		{
+			Handler::handler(E_USER_ERROR, 'The ' . $web_path . ' is not a valid directory', 'index.php', 146);
+		}
+	}	
+
+	/**
+	 * Determing that the $base_controller exists and is readable
+	 * @var string $base_controller
+	 */
+	if( file_exists( APPPATH . 'controllers' . ucfirst($base_controller) . 'Controller.php' ) )
+	{
+		if ( is_readable( APPPATH . 'controllers' . ucfirst($base_controller) . 'Controller.php' ) )
+		{
+			define('BASECONTROLLER', $base_controller);
+		}
+	}
+
+	/**
+	 * Defening the current Smooth framework version
+	 */
+	define('SMOOTH_V', '1.0.2');
 
 	/**
 	 * Loading our main kernel file
