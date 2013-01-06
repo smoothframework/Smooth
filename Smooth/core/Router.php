@@ -13,7 +13,7 @@
 
 			$path = explode('/', $uri);
 
-			( empty( $path[2] ) ) ? $controller = ucfirst(BASECONTROLLER) : $controller = $path[2];				
+			( empty( $path[2] ) ) ? $controller = BASECONTROLLER : $controller = $path[2];				
 			
 			( empty( $path[3] ) ) ? $method = 'index' : $method = $path[3];
 
@@ -39,7 +39,7 @@
 				}
 				else
 				{
-					self::load_controller(ucfirst(BASECONTROLLER));
+					self::load_controller(BASECONTROLLER);
 					// exit('Oops... I could not find the class <strong>' . $class_name . '</strong>' );
 				}
 
@@ -55,7 +55,7 @@
 			}
 			else
 			{
-				self::operate(ucfirst(BASECONTROLLER));
+				self::operate(BASECONTROLLER);
 				// exit('Oops... I could not find the requested controller at ' . $controller_path . '');
 			}
 		}
