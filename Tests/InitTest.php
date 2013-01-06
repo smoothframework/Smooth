@@ -11,7 +11,7 @@
 			$this->assertTrue(defined('APPPATH'));
 			$this->assertTrue(defined('SYSPATH'));
 			$this->assertTrue(defined('WEBPATH'));
-			$this->assertTrue(defined('CONTROLLER'));
+			$this->assertTrue(defined('BASECONTROLLER'));
 			$this->assertTrue(defined('SMOOTH_V'));
 			$this->assertTrue(isset($_SERVER['REQUEST_URI']));
 		}
