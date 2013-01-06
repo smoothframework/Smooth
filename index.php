@@ -183,7 +183,7 @@
 	{
 		if ( is_readable( APPPATH . 'controllers' . ucfirst($base_controller) . 'Controller.php' ) )
 		{
-			define('BASECONTROLLER', $base_controller);
+			define('BASECONTROLLER', ucfirst($base_controller) . 'Controller.php');
 		}
 	}
 
