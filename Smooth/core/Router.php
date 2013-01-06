@@ -13,7 +13,7 @@
 
 			$path = explode('/', $uri);
 
-			( empty( $path[2] ) ) ? $controller = ucfirst(CONTROLLER) : $controller = $path[2];				
+			( empty( $path[2] ) ) ? $controller = ucfirst(BASECONTROLLER) : $controller = $path[2];				
 			
 			( empty( $path[3] ) ) ? $method = 'index' : $method = $path[3];
 
@@ -33,12 +33,14 @@
 					}
 					else
 					{
-						exit('Oops... I could not find the action <strong>' . $method . '</strong> at <b>' . $class_name . '</b>' );
+						self::load_controller(ucfirst($class));
+						// exit('Oops... I could not find the action <strong>' . $method . '</strong> at <b>' . $class_name . '</b>' );
 					}
 				}
 				else
 				{
-					exit('Oops... I could not find the class <strong>' . $class_name . '</strong>' );
+					self::load_controller(ucfirst(BASECONTROLLER));
+					// exit('Oops... I could not find the class <strong>' . $class_name . '</strong>' );
 				}
 
 		}
@@ -48,9 +50,14 @@
 			$controller_path = APPPATH . 'controllers/' . $name . 'Controller.php';
 
 			if( file_exists($controller_path) )
-				include_once $controller_path;
+			{
+				require_once $controller_path;
+			}
 			else
-				exit('Oops... I could not find the requested controller at ' . $controller_path . '');
+			{
+				self::operate(ucfirst(BASECONTROLLER));
+				// exit('Oops... I could not find the requested controller at ' . $controller_path . '');
+			}
 		}
 
 	}
