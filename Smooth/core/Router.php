@@ -33,7 +33,7 @@
 					}
 					else
 					{
-						self::load_controller(ucfirst($class));
+						self::load_controller($class);
 						// exit('Oops... I could not find the action <strong>' . $method . '</strong> at <b>' . $class_name . '</b>' );
 					}
 				}
