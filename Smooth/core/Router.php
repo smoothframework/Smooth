@@ -47,7 +47,7 @@
 
 		public static function load_controller($name)
 		{
-			$controller_path = APPPATH . 'controllers/' . $name . 'Controller.php';
+			$controller_path = APPPATH . 'controllers/' . ucfirst($name) . 'Controller.php';
 
 			if( file_exists($controller_path) )
 			{
