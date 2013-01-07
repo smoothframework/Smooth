@@ -51,7 +51,7 @@
 
 			if( file_exists($controller_path) )
 			{
-				require_once $controller_path;
+				include_once $controller_path;
 			}
 			else
 			{
