@@ -1,6 +1,6 @@
 <?php
 
-	include BASEPATH . 'index.php';
+	include 'index.php';
 
 	class InitTest extends PHPUnit_Framework_TestCase
 	{
