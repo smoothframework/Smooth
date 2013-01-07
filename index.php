@@ -179,9 +179,9 @@
 	 * Determing that the $base_controller exists and is readable
 	 * @var string $base_controller
 	 */
-	if( file_exists( APPPATH . 'controllers' . ucfirst($base_controller) . 'Controller.php' ) )
+	if( file_exists( APPPATH . 'controllers/' . ucfirst($base_controller) . 'Controller.php' ) )
 	{
-		if ( is_readable( APPPATH . 'controllers' . ucfirst($base_controller) . 'Controller.php' ) )
+		if ( is_readable( APPPATH . 'controllers/' . ucfirst($base_controller) . 'Controller.php' ) )
 		{
 			define('BASECONTROLLER', ucfirst($base_controller) . 'Controller.php');
 		}
