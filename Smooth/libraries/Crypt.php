@@ -2,6 +2,8 @@
 
 	namespace Smooth\Libraries;
 
+	use Smooth\Errors\Handler;
+
 	/**
 	 * @package    Smooth Crypt Library
 	 */
@@ -22,7 +24,7 @@
 			if( in_array( $method, $crypt_methods ) )
 				return hash($method, $string);
 			else
-				exit('Error occured during the crypter class');
+				Handler::handler(E_USER_ERROR, 'Check your Crypt library', 'Crypt.php', 22);
 		}
 
 	}

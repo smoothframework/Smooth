@@ -47,11 +47,8 @@
 		{
 			if( $log == 'display' )
 			{
-				exit('Date and time: ' . date('Y-m-d H:i:s')  
-					. ';<br> Log: <br> --level:' . $result['error_level'] 
-					. ';<br> --message: ' . $result['error_message'] 
-					. ';<br> --file: ' . $result['error_file'] 
-					. ';<br> --context: ' . $result['error_context'] . ';');
+				throw new Exception("" . $result['error_message'] . " on level " . $result['error_level'] . " in " . 
+				$result['error_file'] . " on line " . $row['error_line'], 1);
 			}
 			elseif ( $log == 'file' ) {
 				$contents = file_get_contents(SYSPATH . 'errors/error-log.txt');

@@ -2,22 +2,161 @@
 
 	namespace Smooth\Loader;
 
+	use Smooth\Errors\Handler;
+
 	class Loader
 	{
+		/**
+		 * [$_controllersDirectory description]
+		 * @var array
+		 */
+		protected $_controllersDirectory = array();
 
-		public function load()
+		/**
+		 * [$_viewsDirectory description]
+		 * @var array
+		 */
+		protected $_viewsDirectory = array();
+
+		/**
+		 * [$_modelsDirectory description]
+		 * @var array
+		 */
+		protected $_modelsDirectory = array();
+
+		/**
+		 * [$_librariesDirectory description]
+		 * @var array
+		 */
+		protected $_librariesDirectory = array();
+
+		public function __construct()
 		{
-			// Set all the libraries you want to enable their autoload
-			$data = array('form', 'generator', 'db', 'url', 'frontend', 'crypt', 'math', 'datetime');
+			$this->controllersDirectory = APPPATH . 'controllers';
+			$this->viewsDirectory = APPPATH . 'views';
+			$this->modelsDirectory = APPPATH . 'models';
+			$this->librariesDirectory = SYSPATH . 'libraries';
+		}
 
-			foreach($data as $library)
+		/**
+		 * [load description]
+		 * @param  string $file
+		 * @param  array  $params
+		 * @return void
+		 */
+		public static function initialize_object($object = '', array $params = null)
+		{						
+			try
 			{
-				$library_path = SYSPATH . 'libraries/' . ucfirst($library) . '.php';
-				if( file_exists($library_path) )
-					include $library_path;
-				else
-					exit('I can not find <b>' . $library . '</b> library at <b>' . $library_path . '</b>');
+				if( is_array( $object ) )
+				{
+					foreach ($object as $class) 
+					{	
+						if( is_readable( $class ) )
+						{
+							new $class;
+						}
+					}
+				}
+				if( is_string( $object ) )
+				{
+					if( is_readable( $object . '.php' ) )
+					{
+						require $object . '.php';
+					}
+				}
 			}
+			catch(Exception $e)
+			{
+				Handler::handler(E_USER_WARNING, $e->getMessage(), SYSPATH . 'Loader/Loader.php', 61, '');
+			}
+		}
+
+		/**
+		 * [library description]
+		 * @param  string | array $library
+		 * @return void
+		 */
+		public static function library($library = '')
+		{
+			if( is_array( $library ) )
+			{
+				foreach ($library as $class) 
+				{
+					if( is_readable( SYSPATH . 'libraries/' . ucfirst($class) . '.php' ) )
+					{
+						require SYSPATH . 'libraries/' . ucfirst($class) . '.php';
+						new $class;
+						// Loader::initialize_object( SYSPATH . 'libraries/' . ucfirst($class) . '.php' );
+					}
+					else
+					{
+						Handler::handler(E_USER_WARNING, 'Could not read the requested library', SYSPATH . 'Loader/Loader.php', 98, '');
+					}
+				}
+			}
+			
+			if( is_string( $library ) )
+			{
+				if( is_readable( SYSPATH . 'libraries/' . ucfirst($library) . '.php' ) )
+				{
+					require SYSPATH . 'libraries/' . ucfirst($library) . '.php';
+					Loader::initialize_object( ucfirst($library) );
+				}
+				else
+				{
+					Handler::handler(E_USER_WARNING, 'Could not read the requested library', SYSPATH . 'Loader/Loader.php', 112);
+				}
+			}
+		}
+
+		/**
+		 * [controller description]
+		 * @param  string $controller     [description]
+		 * @param  [type] $initController [description]
+		 * @return [type]
+		 */
+		public static function controller($controller = '', $initController = null)
+		{
+			if( is_array( $controller ) )
+			{
+				foreach ($controller as $class) {
+					if( is_readable( APPPATH . 'controllers/' . ucfirst($controller) . 'Controller.php' ) )
+					{
+						$class_name = $class . 'Controller';
+						Loader::initialize_object( APPPATH . 'controllers/' . $class_name );
+						$initController = new $class_name;
+					}
+					else
+					{
+						Handler::handler(E_USER_WARNING, 'Could not read the requested controller', SYSPATH . 'Loader/Loader.php', 126);
+					}
+				}
+			}
+
+			if( is_string( $controller ) )
+			{
+				if( is_readable( APPPATH . 'controllers/' . ucfirst($controller) . 'Controller.php' ) )
+				{
+					$class_name = $controller . 'Controller';
+					Loader::initialize_object( APPPATH . 'controllers/' . $class_name );
+					$initController = new $class_name;
+				}
+			}
+
+			return $initController;
+		}
+
+		/**
+		 * [__destruct description]
+		 */
+		public function __destruct()
+		{
+			unset($controller);
+			unset($library_path);
+			unset($library);
+			unset($class);
+			unset($object);
 		}
 
 	}

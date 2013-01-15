@@ -23,3 +23,10 @@
       </div>
  -->
     </div>
+
+    <?php
+      use Smooth\Libraries\Db;
+
+      print_r(Db::fetch('users'));
+
+    ?>

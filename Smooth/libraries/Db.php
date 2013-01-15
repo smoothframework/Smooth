@@ -3,6 +3,8 @@
 	namespace Smooth\Libraries;
 
 	use Smooth\Database\Database;
+	use Smooth\Database\Connector;
+
 
 	/**
 	 * @package    Smooth Database Library
@@ -12,11 +14,16 @@
 	{
 		private static $dbh;
 
+		/**
+		 * [query description]
+		 * @param  string $query
+		 * @return array
+		 */
 		public static function query($query)
 		{
 			try
 			{
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($query);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute();
@@ -31,11 +38,17 @@
 			}		
 		}
 
+		/**
+		 * [fetch description]
+		 * @param  string $table
+		 * @param  int $limit
+		 * @return array
+		 */
 		public static function fetch($table, $limit = null)
 		{
 			try
 			{
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				if( $limit != null )
 					$sql_limit = 'LIMIT ' . $limit;
 				else
@@ -54,6 +67,13 @@
 			}
 		}
 
+		/**
+		 * [fetch_where description]
+		 * @param  string $table
+		 * @param  array  $params
+		 * @param  int $limit
+		 * @return array
+		 */
 		public static function fetch_where($table, array $params, $limit = null)
 		{	
 			try
@@ -82,7 +102,7 @@
 					}
 				}
 				$sql .= $sql_limit;
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -126,7 +146,7 @@
 					}
 				}
 				$sql .= $sql_limit;
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -162,7 +182,7 @@
 				}
 				$sql .= ')';
 				$sql .= $sql_limit;
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -198,7 +218,7 @@
 				}
 				$sql .= ')';
 				$sql .= $sql_limit;
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -237,7 +257,7 @@
 						$sql .= '' . $value . ',';
 				}
 				$sql .= ')';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute($params);
 				if( count($dbh->lastInsertId()) > 0 )
@@ -260,7 +280,7 @@
 			try
 			{
 				$sql = 'TRUNCATE ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 			}
@@ -292,7 +312,7 @@
 						$sql .= $key . '= :' . $key;
 					}
 				}
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -349,7 +369,7 @@
 						$sql .= $key . '= :' . $key;
 					}
 				}
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -376,7 +396,7 @@
 				if( $as !== null)
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -402,7 +422,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -428,7 +448,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -454,7 +474,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -480,7 +500,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Database::db_connect();
+				$dbh = Connector::retrieve();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)

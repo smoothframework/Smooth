@@ -3,10 +3,11 @@
 	namespace Smooth\Libraries;
 
 	/**
+	 * Excluded
 	 * @package    Smooth Datetime Library
 	 */
 
-	class Datetime
+	class Datetime()
 	{
 
 		public static function date($format)

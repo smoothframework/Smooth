@@ -1,9 +1,24 @@
 <?php 
 
+	namespace Smooth;
+
+	use Smooth\Errors\Handler;
+
 	class Controller 
 	{
 		public static $vars = array();
 
+		public function __construct($request = null, $response = null)
+		{
+
+		}
+
+		/**
+		 * [render description]
+		 * @param  [type] $name [description]
+		 * @param  [type] $vars [description]
+		 * @return [type]       [description]
+		 */
 		public static function render($name, $vars = null)
 		{
 			if( isset($vars) )
@@ -11,8 +26,9 @@
 
 			$controller_path = APPPATH . 'views/' . $name . '.php';
 				if( file_exists($controller_path) )
-					require $controller_path;
+					require_once $controller_path;
 				else
-					exit('Could not find the requested view at <pre>' . $controller_path . '</pre>');
+					Handler::handler(E_USER_ERROR, 'Could not find the requested view at ' . $controller_path, 
+						SYSPATH . 'action/Controller.php', 22);
 		}
 	}

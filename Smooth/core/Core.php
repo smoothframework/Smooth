@@ -1,34 +1,42 @@
 <?php 
-
-	/* Define the namespace */
+	
+	/**
+	 * Defining the namespace
+	 */
 	namespace Smooth;
 
-	/* Using the created namespaces without the Controller and the Model */
+	/**
+	 * Using the already created namespaces
+	 */
 	use Smooth\Core\Library;
 	use Smooth\Core\Router;
 	use Smooth\Core\Smooth;
 	use Smooth\Loader\Loader;
 	use Smooth\Database\Database;
 	use Smooth\Libraries\Session;
+	use Smooth\Database\Connector;
 
-	/* Including the core files for running the Smooth framework */
-	include SYSPATH . 'action/Controller.php';
-	include SYSPATH . 'action/Model.php';
-	include SYSPATH . 'core/Library.php';
-	include SYSPATH . 'core/Router.php';
-	include SYSPATH . 'core/Smooth.php';
-	include SYSPATH . 'database/Database.php';
-	include SYSPATH . 'loader/Loader.php';
-	include SYSPATH . 'libraries/Session.php';
+	/**
+	 * Including the core files for running the Smooth framework
+	 */
+	require SYSPATH . 'libraries/Db.php';
+	require_once APPPATH . 'config/database.php';
+	require SYSPATH . 'database/Connector.php';
+	require SYSPATH . 'action/Controller.php';
+	require SYSPATH . 'action/Model.php';
+	require SYSPATH . 'core/Library.php';
+	require SYSPATH . 'core/Router.php';
+	require SYSPATH . 'core/Smooth.php';
+	require SYSPATH . 'loader/Loader.php';
+	require SYSPATH . 'libraries/Session.php';
+	require SYSPATH . 'errors/Handler.php';
 
-	/* Initializing the Autoload function for all the libraries */
-	$loader = new Loader();
-	$loader->load();
+	Connector::connect();
 
-	/* Checking for the Database connection */
+	/**
+	 * Require and check the connection to the DB
+	 */
 	if( file_exists(SYSPATH . 'core/Database.php') )
 		require_once(SYSPATH . 'core/Database.php');
 
-	/* Initializing and starting the Session */
 	$session = new Session();
-	$session->set();

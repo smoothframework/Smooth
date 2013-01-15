@@ -11,6 +11,12 @@
 	{
 		public static $errors = array();
 
+		/**
+		 * [filter description]
+		 * @param  string $field
+		 * @param  string $rules
+		 * @return [type]
+		 */
 		public static function filter($field, $rules = null)
 		{
 			self::$errors = array();
@@ -45,6 +51,13 @@
 				}
 		}
 
+		/**
+		 * [length description]
+		 * @param  string $field
+		 * @param  int $min_length
+		 * @param  int $max_length
+		 * @return [type]
+		 */
 		public function length($field, $min_length, $max_length)
 		{
 			if( ! is_int($min_length) or ! is_int($max_length) )
@@ -87,6 +100,10 @@
 			return ( ! preg_match('/^[a-zA-Zа-яА-Я\-\_]+$/', $string) ) ? false : true;
 		}
 
+		/**
+		 * [check description]
+		 * @return [type]
+		 */
 		public static function check()
 		{
 			if( count(self::$errors) > 0 )
@@ -113,7 +130,7 @@
 				return trim($input);
 		}
 
-		public static function open($action, $method, $id='', $class='')
+		public static function open($action, $method, $id='', $class='', array $atributes)
 		{
 			return '<form method="' . $method . '" action="' . $action . '">';
 		}

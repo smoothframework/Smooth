@@ -1,30 +1,62 @@
-<?php 
+<?php
 
 	namespace Smooth\Core;
+
+	use Smooth\Loader\Loader;
 
 	class Router
 	{
 
-		public static $path = null;
+		/**
+		 * [$class description]
+		 * @var [type]
+		 */
+		public $class = '';
+		/**
+		 * [$method description]
+		 * @var string
+		 */
+		public $method = 'index';
+
+		/**
+		 * [$defaultController description]
+		 * @var [type]
+		 */
+		public $defaultController = BASECONTROLLER;
+
+		/**
+		 * [$path description]
+		 * @var [type]
+		 */
+		public $path = null;
+
+		/**
+		 * [$uri description]
+		 * @var [type]
+		 */
 		public static $uri = null;
 
+		/**
+		 * [operate description]
+		 * @param  [type] $uri [description]
+		 * @return [type]
+		 */
 		public static function operate($uri)
 		{
 
 			$path = explode('/', $uri);
 
-			( empty( $path[2] ) ) ? $controller = BASECONTROLLER : $controller = $path[2];				
-			
+			( empty( $path[2] ) ) ? $controller = BASECONTROLLER : $controller = $path[2];	
+
 			( empty( $path[3] ) ) ? $method = 'index' : $method = $path[3];
+				
+				$class = Loader::controller( $controller );
+				$class_name = $controller . 'Controller';
 
-			self::load_controller($controller);
-			$class_name = $controller . 'Controller';
-
-				if( class_exists($class_name) )
+				if( class_exists( $class_name ) )
 				{
-					$class = new $class_name;
-					
-					if( is_callable(array($class, $method)) )
+
+					if( is_callable( array( $class, $method ) ) )
 					{
 						if( count($path) == 5 )
 							$class->$method($path[4]);
@@ -33,31 +65,22 @@
 					}
 					else
 					{
-						self::load_controller($class);
-						// exit('Oops... I could not find the action <strong>' . $method . '</strong> at <b>' . $class_name . '</b>' );
+						Router::operate( $class );
+						// exit('Oops... I could not find the action <strong>' . $method . '</strong> at <b>' . $controller . '</b>' );
 					}
 				}
 				else
 				{
-					self::load_controller(BASECONTROLLER);
-					// exit('Oops... I could not find the class <strong>' . $class_name . '</strong>' );
+					Router::operate( BASECONTROLLER );
+					// exit('Oops... I could not find the class <strong>' . $controller . 'Controller' . '</strong>' );
 				}
 
 		}
 
-		public static function load_controller($name)
+		public function set_controller( $request )
 		{
-			$controller_path = APPPATH . 'controllers/' . ucfirst($name) . 'Controller.php';
-
-			if( file_exists($controller_path) )
-			{
-				include_once $controller_path;
-			}
-			else
-			{
-				self::operate(BASECONTROLLER);
-				// exit('Oops... I could not find the requested controller at ' . $controller_path . '');
-			}
+			( empty( $request ) ) ? $controller = BASECONTROLLER : $controller = $path[2];
+			return $controller;
 		}
 
 	}

@@ -126,7 +126,7 @@
 	{
 		if( realpath( $app_path ) !== false )
 		{
-			define('APPPATH', realpath(BASEPATH . $app_path) . '/');
+			define('APPPATH', BASEPATH . $app_path . '/');
 		}
 	}
 	else
@@ -145,7 +145,7 @@
 	{
 		if( realpath( $system_path ) !== false )
 		{
-			define('SYSPATH', realpath(BASEPATH . $system_path) . '/');
+			define('SYSPATH', BASEPATH . $system_path . '/');
 		}
 	}
 	else
@@ -183,7 +183,7 @@
 	{
 		if ( is_readable( APPPATH . 'controllers/' . ucfirst($base_controller) . 'Controller.php' ) )
 		{
-			define('BASECONTROLLER', ucfirst($base_controller) . 'Controller.php');
+			define('BASECONTROLLER', ucfirst($base_controller));
 		}
 	}
 

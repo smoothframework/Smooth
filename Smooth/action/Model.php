@@ -1,5 +1,7 @@
 <?php 
 
+	namespace Smooth;
+
 	class Model
 	{
 		public static function load($name)
