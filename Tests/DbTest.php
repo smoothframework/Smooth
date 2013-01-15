@@ -15,7 +15,7 @@
 	{
 		public static function setUpBeforeClass()
 		{
-			$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', 'ciprop1');
+			$pdo = new PDO('mysql:host=localhost;dbname=test', '', '');
 			Phactory::setConnection($pdo);
 
 			$pdo->exec("CREATE TABLE `users` ( id INTEGER PRIMARY KEY, name TEXT, age INTEGER )");
