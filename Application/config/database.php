@@ -13,8 +13,8 @@
 			return $mysql = array(
 
 					'fetch' => '',
-					'host' => 'localhost',
-					'username' => 'root',
+					'host' => '',
+					'username' => '',
 					'password' => '',
 					'database' => 'test',
 					'driver' => 'mysql',
