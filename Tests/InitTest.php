@@ -1,6 +1,6 @@
 <?php
 
-	include 'https://raw.github.com/smoothframework/Smooth/master/index.php';
+	include 'http://raw.github.com/smoothframework/Smooth/master/index.php';
 
 	class InitTest extends PHPUnit_Framework_TestCase
 	{
