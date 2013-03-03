@@ -4,17 +4,23 @@
 
 	use Smooth\Errors\Handler;
 
-	class Controller 
+	class Controller
 	{
+		public $responce = null;
+
+		public $request = null;
+
+		public $load;
+
 		public static $vars = array();
 
-		public function __construct($request = null, $response = null)
+		public function __construct()
 		{
-
+			$this->load = new Model();
 		}
 
 		/**
-		 * [render description]
+		 * [render description]	
 		 * @param  [type] $name [description]
 		 * @param  [type] $vars [description]
 		 * @return [type]       [description]

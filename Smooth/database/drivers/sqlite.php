@@ -36,7 +36,7 @@
 			}
 
 			if( isset( $config['charset'] ) )
-				$connector->prepare("SET NAMES " . $config['charset'])->execute();
+				$connector->exec("SET NAMES " . $config['charset']);
 				$connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			return $connector;

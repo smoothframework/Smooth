@@ -12,7 +12,7 @@
 
       <div class="jumbotron">
         <h1>Tiny, powerful yet <strong style="color: #97ca47;">Smooth</strong> php framework!</h1>
-        <p class="lead">Congratulations!<br> You are successfully running <strong>Smooth <?php echo SMOOTH_V; ?></strong> version.<br>"Simplicity is the ultimate sophistication." -- Leonardo Da Vinci</p>
+        <p class="lead">Congratulations!<br> You are successfully running <strong>Smooth 1.0.2</strong> version.<br>"Simplicity is the ultimate sophistication." -- Leonardo Da Vinci</p>
         <p><h6>If you want to change or remove this view you should open the file called WelcomeSmoothView.php into views folder based into the Smooth application folder.</h6></p>
       </div>
 <!-- 
@@ -25,8 +25,24 @@
     </div>
 
     <?php
-      use Smooth\Libraries\Db;
 
-      print_r(Db::fetch('users'));
+      // use Smooth\Database\Connector;
+
+      // var_dump(Connector::connect());
+      // echo "<br>";
+      // $connection = new MongoClient("mongodb://root:ciprop1@localhost");
+      // $db = $connection->test;
+      // $collection = $db->users;
+
+      // $find = array(
+      //     'username' => 'Kokicha',
+      //     'email' => 'kokicha@smoothphp.com'
+      //   );
+
+      // $cursor = $collection->find($find);
+
+      // foreach ($cursor as $doc) {
+      //   var_dump($doc);
+      // }
 
     ?>

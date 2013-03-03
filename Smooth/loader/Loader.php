@@ -36,6 +36,7 @@
 			$this->viewsDirectory = APPPATH . 'views';
 			$this->modelsDirectory = APPPATH . 'models';
 			$this->librariesDirectory = SYSPATH . 'libraries';
+			spl_autoload_register('configure');
 		}
 
 		/**
@@ -54,7 +55,7 @@
 					{	
 						if( is_readable( $class ) )
 						{
-							new $class;
+							require $class . '.php';
 						}
 					}
 				}
@@ -85,7 +86,7 @@
 				{
 					if( is_readable( SYSPATH . 'libraries/' . ucfirst($class) . '.php' ) )
 					{
-						require SYSPATH . 'libraries/' . ucfirst($class) . '.php';
+						require_once SYSPATH . 'libraries/' . ucfirst($class) . '.php';
 						new $class;
 						// Loader::initialize_object( SYSPATH . 'libraries/' . ucfirst($class) . '.php' );
 					}
@@ -100,7 +101,7 @@
 			{
 				if( is_readable( SYSPATH . 'libraries/' . ucfirst($library) . '.php' ) )
 				{
-					require SYSPATH . 'libraries/' . ucfirst($library) . '.php';
+					require_once SYSPATH . 'libraries/' . ucfirst($library) . '.php';
 					Loader::initialize_object( ucfirst($library) );
 				}
 				else
@@ -145,6 +146,15 @@
 			}
 
 			return $initController;
+		}
+
+		public static function configure(array $params)
+		{
+			extract($params);
+
+			foreach ($libraries as $key => $value) {
+				Loader::library( $value );
+			}
 		}
 
 		/**

@@ -18,6 +18,7 @@
 			}
 			return $result;	
 		}
+		
 		public static function divide(array $values)
 		{
 			$result = $values[0];
@@ -26,6 +27,7 @@
 			}
 			return $result;
 		}
+		
 		public static function degree($num, $gradiation)
 		{
 			// $result = $num;
@@ -38,6 +40,7 @@
 			}
 			return $result;
 		}
+
 		public static function S(array $values)
 		{
 			$result = 1;
@@ -46,6 +49,7 @@
 			}
 			return $result;
 		}
+
 		public static function P(array $values)
 		{
 			$result = 0;
@@ -54,14 +58,17 @@
 			}
 			return $result;			
 		}
+
 		public static function factorial($num)
 		{
 			return gmp_strval(gmp_fact($num));
 		}
+
 		public static function permutations($num)
 		{
 			return gmp_strval(gmp_fact($num));
 		}
+
 		public static function combinations($num, $repetitions)
 		{
 			if( $num >= $repetitions)
@@ -69,6 +76,7 @@
 			else
 				exit('Error you could, not second parameter that is greater than the first one.');
 		}
+
 		public static function variations($num, $all)
 		{
 			$result = 1;
@@ -78,18 +86,7 @@
 			}
 			return $result;
 		}
-		public static function probabilities($num, $all)
-		{
-			return $num / $all;
-		}
-		public static function log($base, $log)
-		{
-			return log($log, $base);
-		}
-		public static function log10($base, $log)
-		{
-			return log10($log, $base);
-		}
+
 		public static function fibonacci($num)
 		{
 			$first = 1;

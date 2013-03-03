@@ -1,37 +1,52 @@
 <?php
+	
+	
+	return $config = 
 
-	namespace Smooth\Config;
+		array(
 
-	class Database
-	{
-		/**
-		 * [config description]
-		 * @return [type] [description]
-		 */
-		public static function config()
-		{
-			return $mysql = array(
+			'driver' => 'mysql',
 
+			'charset' => 'utf8',
+
+			'persistent' => true,
+
+			'mysql' => array(
+					
 					'fetch' => '',
-					'host' => '',
-					'username' => '',
-					'password' => '',
+					'host' => 'localhost',
+					'username' => 'root',
+					'password' => 'ciprop1',
 					'database' => 'test',
-					'driver' => 'mysql',
 					'db_col' => 'utf8_general_ci',
 					'charset' => 'utf8',
 					'prefix' => '',
 					'port' => '',
 					'unix_socket' => ''
 
-				);	
+				),
 
-			$sqlite = array(
+			'sqlite' => array(
 
-				);
+				),
 
-			$pgsql = array(
+			'pgsql' => array(
 			
-				);		
-		}
-	}
+				),
+
+			'mongodb' => array(
+
+					'host' => 'localhost',
+					'username' => 'root',
+					'password' => 'ciprop1',
+					'database' => 'test',
+					'db_col' => 'utf8_general_ci',
+					'charset' => 'utf8'
+
+				),
+
+			'sqlsrv' => array(
+
+				)
+
+		);

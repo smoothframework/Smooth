@@ -2,8 +2,6 @@
 	
 	namespace Smooth\Database;
 
-	use Smooth\Config\Database;
-
 	class Connector
 	{
 
@@ -11,18 +9,17 @@
 		 * [connect description]
 		 * @return [type] [description]
 		 */
-		public static function connect()
+		public function __construct()
 		{
-			$config = Database::config();
-			extract($config);
+			require 'Application/config/database.php';
 
-			$db_drivers = array('mysql', 'pgsql', 'sqlsrv', 'sqlite');
+			$db_drivers = array('Mysql', 'pgsql', 'sqlsrv', 'sqlite', 'mongodb');
 
 			try
 			{
 				if( in_array($config['driver'], $db_drivers) )
 				{
-					require_once SYSPATH . 'database/drivers/' . $driver . '.php';
+					require SYSPATH . 'database/drivers/' . $driver . '.php';
 					$driver::connect($config);
 				}
 
@@ -31,12 +28,11 @@
 			{
 				exit('PDO connection error' . $e->getMessage());
 			}
-
 		}
 
-		public static function retrieve()
+		public static function getConnection()
 		{
-			$config = Database::config();
+			include 'Application/config/database.php';
 			extract($config);
 			require_once SYSPATH . 'database/drivers/' . $driver . '.php';
 			return $driver::connect($config);

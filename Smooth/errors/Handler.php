@@ -40,28 +40,19 @@
 		/**
 		 * Error displaying or writing to file
 		 * @param  array $result
-		 * @param  string $log null(default) | file (write the log into a file) | display (print the log)
-		 * @return array | file(w)
+		 * @return array
 		 */
-		public static function respond(array $result, $log = 'display')
+		public static function respond(array $result)
 		{
+			extract($result);
+
 			if( $log == 'display' )
 			{
-				throw new Exception("" . $result['error_message'] . " on level " . $result['error_level'] . " in " . 
-				$result['error_file'] . " on line " . $row['error_line'], 1);
+				throw new Exception("" . $error_message . " on level " . $error_level . " in " . $error_file . " on line " . $error_line, 1);
 			}
-			elseif ( $log == 'file' ) {
-				$contents = file_get_contents(SYSPATH . 'errors/error-log.txt');
-				$file = fopen(SYSPATH . 'errors/error-log.txt', 'r+');
-				fwrite($file, $contents . "\n" . 
-					'Date and time: ' . date('Y-m-d H:i:s')  
-					. '; Log: <br>--level:' . $result['error_level'] 
-					. '; --message: ' . $result['error_message'] 
-					. '; --file: ' . $result['error_file'] 
-					. '; --context: ' . $result['error_context'] . ';'
-					);
-				fclose($file);
-				exit();
+			else
+			{
+				throw new Exception("Error processing the handler", 1);
 			}
 		}
 
@@ -84,7 +75,7 @@
 				'error_context' => $errcontext
 				);
 
-			Handler::respond($result);
+			Handler::respond( $result );
 		}
 
 	}

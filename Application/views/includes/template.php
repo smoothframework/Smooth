@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	Smooth\Controller::render('includes/header');
 	Smooth\Controller::render($data['content'], $data);

@@ -12,26 +12,28 @@
 		 */
 		public static function connect(array $config)
 		{
+			extract($config);
+			
 			$dsn = "mysql:host=";
 
-			if( isset( $config['host'] ) )
-				$dsn .= $config['host'];
+			if( isset( $mysql['host'] ) )
+				$dsn .= $mysql['host'];
 			else
 				$dsn .= "localhost";
 
-			if( isset( $config['port'] ) )
-				$dsn .= ";port=" . $config['port'];
+			if( isset( $mysql['port'] ) )
+				$dsn .= ";port=" . $mysql['port'];
 
-			if( isset( $config['unix_socket'] ) )
-				$dsn .= ";unix_socket=" . $config['unix_socket'];
+			if( isset( $mysql['unix_socket'] ) )
+				$dsn .= ";unix_socket=" . $mysql['unix_socket'];
 
 			$dsn .= ";dbname=";
 
-			if( isset( $config['database'] ) )
-				$dsn .= $config['database'];
+			if( isset( $mysql['database'] ) )
+				$dsn .= $mysql['database'];
 			try
 			{
-				$connector = new PDO($dsn, $config['username'], $config['password'], array( PDO::ATTR_PERSISTENT => true ));
+				$connector = new PDO($dsn, $mysql['username'], $mysql['password'], array( PDO::ATTR_PERSISTENT => true ));
 			}
 			catch(\PDOException $e)
 			{

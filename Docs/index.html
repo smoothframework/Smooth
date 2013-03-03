@@ -96,9 +96,9 @@
                   <div class="jumbotron">
                     <h1><strong style="color: #97ca47;">Smooth</strong> php framework documentation!</h1>
                     <p class="lead">Our team wishes you great developing hours using Smooth.</p>
-                    <a class="btn btn-large btn-success" href="http://downloads.smoothphp.com/Smooth-0.0.1.zip">Download Smooth 0.0.1</a>
+                    <a class="btn btn-large btn-success" href="http://downloads.smoothphp.com/Smooth-0.0.1.zip">Download Smooth 1.0.2</a>
                     <br><br>
-                    <p><a href="http://downloads.smoothphp.com/Smooth-0.0.1plusDocs.zip">Click here</a> and get Smooth 0.0.1 + docs.</p>
+                    <p><a href="http://downloads.smoothphp.com/Smooth-0.0.1plusDocs.zip">Click here</a> and get Smooth 1.0.2 + docs.</p>
                   </div>
                                      
                   <!-- <footer class="footer"> -->
@@ -162,26 +162,19 @@
                           <li><a href="#Libraries-Crypt-crc32b">crc32b</a></li>
                           <li><a href="#Libraries-Crypt-adler32">adler32</a></li>
                       </ul>
-                  <li>– <a href="#Libraries-Datetime">Datetime</a></li>
-                      <ul>
-                          <li><a href="#Libraries-Datetime-date">date</a></li>
-                          <li><a href="#Libraries-Datetime-time">time</a></li>
-                          <li><a href="#Libraries-Datetime-time-unix">time_unix</a></li>
-                          <li><a href="#Libraries-Datetime-now">now</a></li>
-                      </ul>
                   <li>– <a href="#Libraries-Db">Db</a></li>
                       <ul>
                           <li><a href="#Libraries-Db-query">query</a></li>
                           <li><a href="#Libraries-Db-fetch">fetch</a></li>
-                          <li><a href="#Libraries-Db-fetch-where">fetch_where</a></li>
-                          <li><a href="#Libraries-Db-fetch-or-where">fetch_or_where</a></li>
-                          <li><a href="#Libraries-Db-fetch-where-in">fetch_where_in</a></li>
-                          <li><a href="#Libraries-Db-fetch-where-not-in">fetch_where_not_in</a></li>
-                          <li><a href="#Libraries-Db-fetch-max">fetch_max</a></li>
-                          <li><a href="#Libraries-Db-fetch-min">fetch_min</a></li>
-                          <li><a href="#Libraries-Db-fetch-average">fetch_average</a></li>
-                          <li><a href="#Libraries-Db-fetch-sum">fetch_sum</a></li>
-                          <li><a href="#Libraries-Db-fetch-count">fetch_count</a></li>
+                          <li><a href="#Libraries-Db-fetch-where">fetchWhere</a></li>
+                          <li><a href="#Libraries-Db-fetch-or-where">fetchOrWhere</a></li>
+                          <li><a href="#Libraries-Db-fetch-where-in">fetchWhereIn</a></li>
+                          <li><a href="#Libraries-Db-fetch-where-not-in">fetchWhereNotIn</a></li>
+                          <li><a href="#Libraries-Db-fetch-max">fetchMax</a></li>
+                          <li><a href="#Libraries-Db-fetch-min">fetchMin</a></li>
+                          <li><a href="#Libraries-Db-fetch-average">fetchAverage</a></li>
+                          <li><a href="#Libraries-Db-fetch-sum">fetchSum</a></li>
+                          <li><a href="#Libraries-Db-fetch-count">fetchCount</a></li>
                           <li><a href="#Libraries-Db-insert">insert</a></li>
                           <li><a href="#Libraries-Db-truncate">truncate</a></li>
                           <li><a href="#Libraries-Db-delete">delete</a></li>
@@ -412,9 +405,9 @@
                         <p>The Crypt library provides a faster way of crypting your information by using some of the most used methods. Above are listed all of the available methods in our latest version. Loading the Crypt library is done by adding this to the top of your code:</p>
                         <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Crypt;</span></li></ol></pre>
                         <p>Crypting using any of the listed methods is complete by using this one:</p>
-                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::method('my_super_secret_password');</span></li></ol></pre>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::crypter('method','my_super_secret_password');</span></li></ol></pre>
                         <p>So if you are still wondering how to use our Crypt library here is an example using <b>whirlpool</b> algorithm:</p>
-                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::whirlpool('my_information');</span></li></ol></pre>
+                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Crypt::crypter("whirpool", "string")</span></li></ol></pre>
                         <p>It is the same with the rest of the algorithms.</p>
                           <h5 id="Libraries-Crypt-sha1" class="muted">sha1(string)</h5>
                           <h5 id="Libraries-Crypt-sha224" class="muted">sha224(string)</h5>
@@ -435,17 +428,6 @@
                           <h5 id="Libraries-Crypt-crc32" class="muted">crc32(string)</h5>
                           <h5 id="Libraries-Crypt-crc32b" class="muted">crc32b(string)</h5>
                           <h5 id="Libraries-Crypt-adler32" class="muted">adler32(string)</h5>
-                     <h4 id="Libraries-Datetime">Date & Time</h4>
-                      <p>Our Date & Time library contains helper functions when working with dates. Load the library by:</p>
-                        <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Datetime;</span></li></ol></pre>
-                         <h5 id="Libraries-Datetime-date" class="muted">date(format)</h5>
-                          <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$format = '%y - %m - %d';</span></li><li class="L1"><span>Datetime::date($format);</span></li></ol></pre>
-                         <h5 id="Libraries-Datetime-time" class="muted">time()</h5>
-                          <p>Our time() function will return the exact time in format H:i:s. May come in handy.</p>
-                         <h5 id="Libraries-Datetime-time-unix" class="muted">time_unix()</h5>
-                          <p>Returning the exact time in unix format.</p>
-                         <h5 id="Libraries-Datetime-now" class="muted">now()</h5>
-                          <p>Function similar to time(), but with additional exact seconds. Time in format H:i:s:u.</p>
                      <h4 id="Libraries-Db">Db</h4>
                       <p>Use of <b>Db</b> class to smoothen your work process with databases. Smooth is using <b>PDO</b>, however you will not be pushed to write SQL queries if you don't want to. Load it with:</p>
                         <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>use Smooth\Libraries\Db;</span></li></ol></pre>
@@ -455,38 +437,38 @@
                          <h5 id="Libraries-Db-fetch" class="muted">fetch(table, limit=null)</h5>
                           <p>Function selecting all the data from your aimed table. The second parameter is limit and is set to null by default, but if you want to limit the result just put a number after a comma.</p>
                             <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch('users');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT * FROM users");</span></li></ol></pre>
-                         <h5 id="Libraries-Db-fetch-where" class="muted">fetch_where(table, array params, limit = null)</h5>
+                         <h5 id="Libraries-Db-fetch-where" class="muted">fetchWhere(table, array params, limit = null)</h5>
                           <p>Function which will help you in select data with where statement, again our limit parameter is optional.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetch_where('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' AND email = 'myemail@mysite.com'");</span></li></ol></pre>
-                         <h5 id="Libraries-Db-fetch-or-where" class="muted">fetch_or_where(table, array params, limit = null</h5>
-                          <p>Function similar to fetch_where but added OR instead of AND. Our third parameter(limit) is set to null by default and is optional.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetch_or_where('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' OR email = 'myemail@mysite.com'");</span></li></ol></pre>
-                         <h5 id="Libraries-Db-fetch-where-in" class="muted">fetch_where_in(table, field, array params, limit = null)</h5>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetchWhere('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' AND email = 'myemail@mysite.com'");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-or-where" class="muted">fetchOrWhere(table, array params, limit = null</h5>
+                          <p>Function similar to fetchWhere but added OR instead of AND. Our third parameter(limit) is set to null by default and is optional.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('user'=>'me', 'email'=>'myemail@mysite.com');</span></li><li class="L1"><span>Db::fetchOrWhere('users', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user = 'me' OR email = 'myemail@mysite.com'");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-where-in" class="muted">fetchWhereIn(table, field, array params, limit = null)</h5>
                           <p>Function making you capable of specifying multiple values in WHERE clause. Sounds a bit perplexing? Look at your example code:</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetch_where_in('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user IN ('me', 'you', 'them')");</span></li></ol></pre>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetchWhereIn('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user IN ('me', 'you', 'them')");</span></li></ol></pre>
                           <p>In this case you need to pass your table name, field name and the multiple values in a array, again our limit is set to null by default and is optional, however it is the 4 parameter in this function.</p>
                          <h5 id="Libraries-Db-fetch-where-not-in" class="muted">fetch_where_not_in(table, field, array params)</h5>
-                          <p>This function syntax is similar to <b>fetch_where_in</b> except it adds <b>NOT</b> and changes the direction of our query.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetch_where_not_in('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user NOT IN ('me', 'you', 'them')");</span></li></ol></pre>
-                         <h5 id="Libraries-Db-fetch-max" class="muted">fetch_max(table, field, as = null)</h5>
+                          <p>This function syntax is similar to <b>fetchWhereIn</b> except it adds <b>NOT</b> and changes the direction of our query.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>$params = array('me', 'you', 'them');</span></li><li class="L1"><span>Db::fetchWhereNotIn('users', 'user', $params);</span></li><li class="L2"><span>//equal to</span></li><li class="L3"><span>Db::query("SELECT * FROM users WHERE user NOT IN ('me', 'you', 'them')");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-max" class="muted">fetchMax(table, field, as = null)</h5>
                           <p>Function that returns the largest value of the column.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_max('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MAX('user') FROM users");</span></li></ol></pre>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetchMax('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MAX('user') FROM users");</span></li></ol></pre>
                           <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
-                         <h5 id="Libraries-Db-fetch-min" class="muted">fetch_min(table, field, as = null)</h5>
+                         <h5 id="Libraries-Db-fetch-min" class="muted">fetchMin(table, field, as = null)</h5>
                           <p>The function is similar to <b>fetch_max</b>, however it returns the smallest values of the column.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_min('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MIN('user') FROM users");</span></li></ol></pre>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetchMin('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT MIN('user') FROM users");</span></li></ol></pre>
                           <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
-                         <h5 id="Libraries-Db-fetch-average" class="muted">fetch_average(table, field, as = null)</h5>
-                          <p>The function syntax is similar to the <b>fetch_max</b> and <b>fetch_min</b>, however it returns the average value of a numeric column.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_average('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT AVG('user') FROM users");</span></li></ol></pre>
+                         <h5 id="Libraries-Db-fetch-average" class="muted">fetchAverage(table, field, as = null)</h5>
+                          <p>The function syntax is similar to the <b>fetchMax</b> and <b>fetchMin</b>, however it returns the average value of a numeric column.</p>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetchAverage('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT AVG('user') FROM users");</span></li></ol></pre>
                           <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
-                         <h5 id="Libraries-Db-fetch-sum" class="muted">fetch_sum(table, field, as = null)</h5>
+                         <h5 id="Libraries-Db-fetch-sum" class="muted">fetchSum(table, field, as = null)</h5>
                           <p>The function syntax is similar to the other functions, however it returns the total sum of a numeric column.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_sum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetchSum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
                           <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
-                         <h5 id="Libraries-Db-fetch-count" class="muted">fetch_count(table, field, as = null)</h5>
+                         <h5 id="Libraries-Db-fetch-count" class="muted">fetchCount(table, field, as = null)</h5>
                           <p>The function syntax is similar to the other functions, however it returns the number of values of the column.</p>
-                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetch_sum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
+                            <pre class="prettyprint" id="PHP"><ol class="linemums"><li class="L0"><span>Db::fetchSum('users', 'user');</span></li><li class="L1"><span>//equal to</span></li><li class="L2"><span>Db::query("SELECT SUM('user') FROM users");</span></li></ol></pre>
                           <p>The third parameter is the as part and is set to null by default which is making it optional. Use it in case you need giving a field another name in your queries.</p>
                           <p class="text-error">Note: The functions does not count NULL values.</p>
                          <h5 id="Libraries-Db-insert" class="muted">insert(table, array params)</h5>

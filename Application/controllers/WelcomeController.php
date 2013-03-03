@@ -7,6 +7,7 @@
 
 		public function index()
 		{
+			$data['var'] = "Smooth";
 			$data['content'] = 'WelcomeSmoothView';
 			$this->render('includes/template', compact('data'));	
 		}

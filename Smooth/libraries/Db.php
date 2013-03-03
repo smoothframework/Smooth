@@ -2,8 +2,8 @@
 
 	namespace Smooth\Libraries;
 
-	use Smooth\Database\Database;
 	use Smooth\Database\Connector;
+	use Smooth\Database\Database;
 
 
 	/**
@@ -12,7 +12,12 @@
 
 	class Db
 	{
-		private static $dbh;
+		protected $dbh;
+
+		public function __construct()
+		{
+			$this->_dbh = Connector::getConnection();
+		}
 
 		/**
 		 * [query description]
@@ -23,7 +28,7 @@
 		{
 			try
 			{
-				$dbh = Connector::retrieve();
+				$dbh = Connector::getConnection();
 				$pdo = $dbh->prepare($query);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute();
@@ -48,7 +53,7 @@
 		{
 			try
 			{
-				$dbh = Connector::retrieve();
+				$dbh = Connector::getConnection();
 				if( $limit != null )
 					$sql_limit = 'LIMIT ' . $limit;
 				else
@@ -74,7 +79,7 @@
 		 * @param  int $limit
 		 * @return array
 		 */
-		public static function fetch_where($table, array $params, $limit = null)
+		public static function fetchWhere($table, array $params, $limit = null)
 		{	
 			try
 			{
@@ -102,7 +107,7 @@
 					}
 				}
 				$sql .= $sql_limit;
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -118,7 +123,7 @@
 			}
 		}
 
-		public static function fetch_or_where($table, array $params, $limit=null)
+		public static function fetchOrWhere($table, array $params, $limit=null)
 		{	
 			try
 			{
@@ -146,7 +151,7 @@
 					}
 				}
 				$sql .= $sql_limit;
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -161,7 +166,7 @@
 			}
 		}
 
-		public static function fetch_where_in($table, $field, array $params, $limit = null)
+		public static function fetchWhereIn($table, $field, array $params, $limit = null)
 		{	
 			try
 			{
@@ -182,7 +187,7 @@
 				}
 				$sql .= ')';
 				$sql .= $sql_limit;
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -197,7 +202,7 @@
 			}
 		}
 
-		public static function fetch_where_not_in($table, $field, array $params, $limit = null)
+		public static function fetchWhereNotIn($table, $field, array $params, $limit = null)
 		{	
 			try
 			{
@@ -218,7 +223,7 @@
 				}
 				$sql .= ')';
 				$sql .= $sql_limit;
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -257,7 +262,7 @@
 						$sql .= '' . $value . ',';
 				}
 				$sql .= ')';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute($params);
 				if( count($dbh->lastInsertId()) > 0 )
@@ -280,7 +285,7 @@
 			try
 			{
 				$sql = 'TRUNCATE ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 			}
@@ -312,7 +317,7 @@
 						$sql .= $key . '= :' . $key;
 					}
 				}
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -369,7 +374,7 @@
 						$sql .= $key . '= :' . $key;
 					}
 				}
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 				$pdo->execute($params);
@@ -388,7 +393,7 @@
 			}
 		}
 
-		public static function fetch_max($table, $field, $as=null)
+		public static function fetchMax($table, $field, $as=null)
 		{
 			try
 			{
@@ -396,7 +401,7 @@
 				if( $as !== null)
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -414,7 +419,7 @@
 			}
 		}
 
-		public static function fetch_min($table, $field, $as=null)
+		public static function fetchMin($table, $field, $as=null)
 		{
 			try
 			{
@@ -422,7 +427,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -440,7 +445,7 @@
 			}
 		}
 
-		public static function fetch_average($table, $field, $as=null)
+		public static function fetchAverage($table, $field, $as=null)
 		{
 			try
 			{
@@ -448,7 +453,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -466,7 +471,7 @@
 			}
 		}
 
-		public static function fetch_sum($table, $field, $as=null)
+		public static function fetchSum($table, $field, $as=null)
 		{
 			try
 			{
@@ -474,7 +479,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
@@ -492,7 +497,7 @@
 			}
 		}
 
-		public static function fetch_count($table, $field, $as = null)
+		public static function fetchCount($table, $field, $as = null)
 		{
 			try
 			{
@@ -500,7 +505,7 @@
 				if( $as !== null )
 					$sql .= 'as ' . $as . ' ';
 				$sql .= 'FROM ' . $table . '';
-				$dbh = Connector::retrieve();
+				$dbh = Connector::connect();
 				$pdo = $dbh->prepare($sql);
 				$pdo->execute();
 				if( $pdo->rowCount() > 0)
