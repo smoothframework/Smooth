@@ -1,7 +1,6 @@
 {
-	"autoload": {
-		"classmap": [
-			"Smooth/libraries"
-		]
-	}
+    "name": "smoothframework/smooth",
+    "require": {
+        "php": ">=5.3.0"
+    }
 }
