@@ -130,12 +130,16 @@
 				return trim($input);
 		}
 
-		public static function open($action, $method, $id='', $class='', array $atributes)
+		public static function open($action, $method, $id='', $class='', array $atributes = array())
 		{
 			return '<form method="' . $method . '" action="' . $action . '">';
 		}
-		public static function input($type, $name, $value='', $placeholder='', $pattern=null, $required=null, $title=null)
+		public static function input($type, $name, $value='', $old=false, $placeholder='', $pattern=null, $required=null, $title=null)
 		{
+
+			if($old && $_POST && $type != 'password')
+				$value = self::post($name);
+
 			switch ($type) 
 			{
 				case 'hidden':
@@ -144,6 +148,9 @@
 				case 'text':
 					$input = '<input type="text" name="' . $name . '" value="' . $value . '" placeholder="' . $placeholder . '">';
 					break;
+/*				case 'text':
+					$input = '<input type="text" name="' . $name . '" value="' . $value . '" placeholder="' . $placeholder . '">';
+					break;*/
 				case 'password':
 					$input = '<input type="password" name="' . $name . '" value="' . $value . '" placeholder="' . $placeholder . '">';
 					break;
