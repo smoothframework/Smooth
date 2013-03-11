@@ -22,8 +22,6 @@
 	require_once SYSPATH . 'errors/Handler.php';
 	require_once SYSPATH . 'config/Config.php';
 	require_once SYSPATH . 'routing/Dispatcher.php';
-	require_once SYSPATH . 'rest/Request.php';
-	require_once SYSPATH . 'rest/Response.php';
 	require_once SYSPATH . 'kernel/Kernel.php';
 	require_once SYSPATH . 'config/Security.php';
 
