@@ -34,15 +34,15 @@
 			try
 			{
 				$connector = new PDO($dsn, $mysql['username'], $mysql['password'], array( PDO::ATTR_PERSISTENT => true ));
+			
+				if( isset( $config['charset'] ) )
+					$connector->prepare("SET NAMES " . $config['charset'])->execute();
+					$connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}
 			catch(\PDOException $e)
 			{
 				exit($e->getMessage());
 			}
-
-			if( isset( $config['charset'] ) )
-				$connector->prepare("SET NAMES " . $config['charset'])->execute();
-				$connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			return $connector;
 		}
