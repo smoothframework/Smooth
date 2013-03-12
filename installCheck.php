@@ -8,8 +8,8 @@
 				<meta charset="utf-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>Smooth Php Framework</title>
-				<link rel="stylesheet" href="Docs/bootstrap/css/bootstrap.css">
-				<link rel="stylesheet" href="Docs/bootstrap/css/bootstrap-responsive.css">
+				<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/docs/assets/css/bootstrap.css">
+				<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/docs/assets/css/bootstrap.css">
 
 			    <style type="text/css">
 			      body {
