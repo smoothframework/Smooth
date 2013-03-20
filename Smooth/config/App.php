@@ -25,6 +25,7 @@
 			mb_internal_encoding($charset);
 			ini_set('default_charset', $charset);
 
+			define('URL', $url);
 
 			/**
 			 * Determing that the $web_path is a real directory
