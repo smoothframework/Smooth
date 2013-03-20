@@ -5,6 +5,7 @@
 	use Smooth\Loader\Loader;
 	use Smooth\Routing\Dispatcher;
 	use Smooth\Routing\Routes;
+	use Smooth\Controller;
 
 	class Router
 	{
@@ -44,18 +45,33 @@
 		 */
 		protected $controller;
 
+		protected $route;
+
 		/**
 		 * [__construct description]
 		 * @param string $uri [description]
 		 */
-		public function __construct($uri)
+				public function __construct($uri)
 		{
 			$this->uri = $uri;
 			$this->defaultController = BASECONTROLLER;
+			$data['content'] = NOTFOUND;
 			if( is_object( $uri ) )
-				exit('There is no existing controller method!');
+			{
+				Controller::render('includes/template', compact($data));
+				exit();
+			}
 
+			$this->count = substr_count($uri, '/');
+			
 			$this->path = explode('/', $uri);
+
+			$route = array_diff($this->path, explode('/', URL));
+
+			foreach ($route as $key => $value) 
+			{
+				$this->route[] = $value;
+			}
 
 			$this->setController();
 			$this->setMethod();
@@ -71,7 +87,7 @@
 		 */
 		public function setController()
 		{
-			return ( empty( $this->path[2] ) ) ? $this->controller = $this->defaultController : $this->controller = $this->path[2];
+			return ( empty( $this->route[0] ) ) ? $this->controller = $this->defaultController : $this->controller = $this->route[0];
 		}
 
 		/**
@@ -80,9 +96,8 @@
 		 */
 		public function setMethod()
 		{
-			return ( empty( $this->path[3] ) ) ? $this->method = 'index' : $this->method = $this->path[3];
+			return ( empty( $this->route[1] ) ) ? $this->method = 'index' : $this->method = $this->route[1];
 		}
-
 		/**
 		 * [checkRouting description]
 		 * @return [type] [description]
