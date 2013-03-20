@@ -14,6 +14,16 @@ Smooth can be used by both advanced and beginner programmers within minutes afte
 
 Get everything you need at [our  official site](http://smoothphp.com "Smooth php framework") or check the [documentation](http://docs.smoothphp.com "Smooth Docs") and the [get started guide](http://smoothphp.com/getstarted "Smooth - Get Started guide").
 
+#### Installation!important
+
+In order to run Smooth you will need to change your configuration files based into the Application/config folder.
+
+!important: The url value(Application/config/app.php) should contain the directory where Smooth is based.
+
+Example:
+--- If Smooth is based on localhost/htdocs/Smooth your 'url' value should be: '/Smooth/'
+--- If Smooth is based on localhost/htdocs/Try/One/Two your 'url' value should be: '/Try/One/Two'
+
 #### Smooth directories
 
 <ul>
@@ -27,7 +37,7 @@ Get everything you need at [our  official site](http://smoothphp.com "Smooth php
 
 Above are listed all available libraries included into the last released Smooth package.
 
-Cookie, Crypt, Datetime, Db, Form, Frontend, Generator, Math, Session, Url;
+Cookie, Cache, Security, Crypt, Db, Form, Frontend, Generator, Math, Session, Url;
 
 ### Contribute
 
