@@ -6,7 +6,7 @@ php:
 env:
   - DB=pdo/mysql
     
-script: phpunit --verbose Tests/InitTest.php
+script: phpunit
 
 notifications:
   email: false
