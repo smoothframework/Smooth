@@ -39,7 +39,7 @@
 		 */
 		protected $uri;
 		
-			/**
+		/**
 		 * [$controller description]
 		 * @var [type]
 		 */
@@ -51,7 +51,7 @@
 		 * [__construct description]
 		 * @param string $uri [description]
 		 */
-				public function __construct($uri)
+		public function __construct($uri)
 		{
 			$this->uri = $uri;
 			$this->defaultController = BASECONTROLLER;
