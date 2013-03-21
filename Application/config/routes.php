@@ -4,7 +4,7 @@
 
 	Config::set('Dispatcher', array(
 
-			'base_controller' => 'welcome',
+			'baseController' => 'welcome',
 			'missingView' => 'test'
 
 		));
