@@ -111,19 +111,37 @@
 		{
 			extract( $params );
 
-			$controllerPath = APPPATH . 'controllers/' . ucfirst( $base_controller ) . 'Controller.php';
+			$controllerPath = APPPATH . 'controllers/' . ucfirst( $baseController ) . 'Controller.php';
 			
 			if( file_exists( $controllerPath ) )
 			{
 				if ( is_readable( $controllerPath ) )
 				{
-					define('BASECONTROLLER', ucfirst( $base_controller ));
+					define('BASECONTROLLER', ucfirst( $baseController ));
 				}
 				else
 				{
 					throw new Exception("Error Processing Request", 1);
 				}
 			} 
+			else
+			{
+				throw new Exception("Error Processing Request", 1);
+			}
+
+			$notFound = APPPATH . 'views/' . $missingView . '.php';
+
+			if( file_exists( $notFound ) )
+			{
+				if( is_readable( $notFound ) )
+				{
+					define('NOTFOUND', $missingView);
+				}
+				else
+				{
+					throw new Exception("Error Processing Request", 1);
+				}
+			}
 			else
 			{
 				throw new Exception("Error Processing Request", 1);
