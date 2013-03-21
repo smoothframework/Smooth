@@ -1,3 +1,0 @@
-Date and time: 2013-01-06 00:36:36 Log: --level:1; --message: 256; --file: Check your Crypt library; --context: 22
-Date and time: 2013-01-06 00:36:45 Log: --level:1; --message: 256; --file: Check your Crypt library; --context: 22
-Date and time: 2013-01-06 00:37:12 Log: --level:1; --message: 256; --file: Check your Crypt library; --context: 22
