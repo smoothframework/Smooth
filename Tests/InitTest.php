@@ -1,11 +1,11 @@
 <?php
 
-	require '../index.php';
+	require_once 'index.php';
 
 	class InitTest extends PHPUnit_Framework_TestCase
 	{
 		
-		public function testSmoothVars()
+		public function testIfSmoothConstantsAreDefined()
 		{		
 			$this->assertTrue(defined('BASEPATH'));
 			$this->assertTrue(defined('APPPATH'));
