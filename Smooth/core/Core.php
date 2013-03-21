@@ -38,8 +38,6 @@
 	require_once SYSPATH . 'http/Request.php';
 	require_once SYSPATH . 'http/Response.php';
 
-	require_once SYSPATH . 'template\Engine.php';
-
 	new Connector();
 	new Session();
 	new Security();
