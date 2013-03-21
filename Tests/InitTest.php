@@ -1,8 +1,6 @@
 <?php
 
-	// namespace Smooth\Tests;
-
-	include 'index.php';
+	require '../index.php';
 
 	class InitTest extends PHPUnit_Framework_TestCase
 	{
@@ -12,8 +10,8 @@
 			$this->assertTrue(defined('BASEPATH'));
 			$this->assertTrue(defined('APPPATH'));
 			$this->assertTrue(defined('SYSPATH'));
-			$this->assertTrue(defined('WEBPATH'));
 			$this->assertTrue(defined('BASECONTROLLER'));
+			$this->assertTrue(defined('NOTFOUND'));
 		}
 
 	}
