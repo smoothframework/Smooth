@@ -4,6 +4,7 @@ php:
   - 5.3
 
 before_script:
+  - pear channel-discover pearhub.org
   - pear install pearhub/Phactory
   - phpenv rehash
 
