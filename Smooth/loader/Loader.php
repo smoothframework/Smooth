@@ -137,7 +137,7 @@
 				foreach ($controller as $class) {
 					if( is_readable( APPPATH . 'controllers/' . ucfirst($controller) . 'Controller.php' ) )
 					{
-						$class_name = $class . 'Controller';
+						$class_name = ucfirst($class) . 'Controller';
 						Loader::initialize_object( APPPATH . 'controllers/' . $class_name );
 						$initController = new $class_name;
 					}
@@ -153,7 +153,7 @@
 			{
 				if( is_readable( APPPATH . 'controllers/' . ucfirst($controller) . 'Controller.php' ) )
 				{
-					$class_name = $controller . 'Controller';
+					$class_name = ucfirst($controller) . 'Controller';
 					Loader::initialize_object( APPPATH . 'controllers/' . $class_name );
 					$initController = new $class_name;
 				}
